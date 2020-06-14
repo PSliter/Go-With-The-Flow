@@ -1,0 +1,3465 @@
+classdef Simulation < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                        matlab.ui.Figure
+        TabGroup                        matlab.ui.container.TabGroup
+        MainPage                        matlab.ui.container.Tab
+        RedButton                       matlab.ui.control.Button
+        GreenButton                     matlab.ui.control.Button
+        BlueButton                      matlab.ui.control.Button
+        RedChallengeButton              matlab.ui.control.Button
+        GreenChallengeButton            matlab.ui.control.Button
+        BlueChallengeButton             matlab.ui.control.Button
+        YellowButton                    matlab.ui.control.Button
+        YellowChallengeButton           matlab.ui.control.Button
+        RedTab                          matlab.ui.container.Tab
+        Label1                          matlab.ui.control.Label
+        Label2                          matlab.ui.control.Label
+        Label3                          matlab.ui.control.Label
+        Label4                          matlab.ui.control.Label
+        ListBox_1                       matlab.ui.control.ListBox
+        ListBox_2                       matlab.ui.control.ListBox
+        ListBox_3                       matlab.ui.control.ListBox
+        ListBox_4                       matlab.ui.control.ListBox
+        CheckMark                       matlab.ui.control.Image
+        UnCheckMark_Red                 matlab.ui.control.Image
+        TryAgain_Red                    matlab.ui.control.Image
+        RedChallengeTab                 matlab.ui.container.Tab
+        RCDef1                          matlab.ui.control.Label
+        RCDef2                          matlab.ui.control.Label
+        RCDef3                          matlab.ui.control.Label
+        RCDef4                          matlab.ui.control.Label
+        AnswerLabel                     matlab.ui.control.Label
+        RCAns1                          matlab.ui.control.EditField
+        AnswerLabel_2                   matlab.ui.control.Label
+        RCAns2                          matlab.ui.control.EditField
+        AnswerLabel_3                   matlab.ui.control.Label
+        RCAns3                          matlab.ui.control.EditField
+        AnswerLabel_4                   matlab.ui.control.Label
+        RCAns4                          matlab.ui.control.EditField
+        CheckMarkRC                     matlab.ui.control.Image
+        UnCheckMark_C_Red               matlab.ui.control.Image
+        TryAgain_C_Red                  matlab.ui.control.Image
+        GreenTab                        matlab.ui.container.Tab
+        Plot1                           matlab.ui.control.UIAxes
+        NumberofLayersLabel             matlab.ui.control.Label
+        LayerCount                      matlab.ui.control.DropDown
+        ClearPlotButton                 matlab.ui.control.Button
+        Layer2Label                     matlab.ui.control.Label
+        Layer2HeightLabel               matlab.ui.control.Label
+        Layer2Height                    matlab.ui.control.Slider
+        Layer2ViscLabel                 matlab.ui.control.Label
+        Layer2Visc                      matlab.ui.control.Slider
+        Layer3Label                     matlab.ui.control.Label
+        Layer3HeightLabel               matlab.ui.control.Label
+        Layer3Height                    matlab.ui.control.Slider
+        Layer3ViscLabel                 matlab.ui.control.Label
+        Layer3Visc                      matlab.ui.control.Slider
+        Layer4Label                     matlab.ui.control.Label
+        Layer4HeightLabel               matlab.ui.control.Label
+        Layer4Height                    matlab.ui.control.Slider
+        Layer4ViscLabel                 matlab.ui.control.Label
+        Layer4Visc                      matlab.ui.control.Slider
+        Layer1Label                     matlab.ui.control.Label
+        Layer1HeightLabel               matlab.ui.control.Label
+        Layer1Height                    matlab.ui.control.Slider
+        Layer1ViscLabel                 matlab.ui.control.Label
+        Layer1Visc                      matlab.ui.control.Slider
+        BottomPlateVeloictyLabel        matlab.ui.control.Label
+        BtmV                            matlab.ui.control.NumericEditField
+        TopPlateVeloictyEditFieldLabel  matlab.ui.control.Label
+        TopV                            matlab.ui.control.NumericEditField
+        PressureEditFieldLabel          matlab.ui.control.Label
+        GreenPressure                   matlab.ui.control.NumericEditField
+        Plot2                           matlab.ui.control.UIAxes
+        Label9                          matlab.ui.control.Label
+        CheckMarkGreen                  matlab.ui.control.Image
+        BlueTab                         matlab.ui.container.Tab
+        PleaseinputtheLabel             matlab.ui.control.Label
+        Blue_VarValue_5Label            matlab.ui.control.Label
+        Blue_VarValue_1Label            matlab.ui.control.Label
+        Blue_VarValue_2Label            matlab.ui.control.Label
+        Blue_VarValue_3Label            matlab.ui.control.Label
+        Blue_VarValue_4Label            matlab.ui.control.Label
+        Blue_NumValue_1Label            matlab.ui.control.Label
+        Blue_NumValue_2Label            matlab.ui.control.Label
+        Blue_NumValue_3Label            matlab.ui.control.Label
+        Blue_NumValue_4Label            matlab.ui.control.Label
+        test_answerLabel                matlab.ui.control.Label
+        AnswerEditField_2Label          matlab.ui.control.Label
+        Blue_User_Input                 matlab.ui.control.NumericEditField
+        CheckMark_Blue                  matlab.ui.control.Image
+        ReyNum_Blue                     matlab.ui.control.Image
+        SurfTen_Blue                    matlab.ui.control.Image
+        UnCheckMark_Blue                matlab.ui.control.Image
+        TryAgain_Blue                   matlab.ui.control.Image
+        BlueChallengeTab                matlab.ui.container.Tab
+        Blue_C_directions               matlab.ui.control.Label
+        Blue_C_VarValue_1Label          matlab.ui.control.Label
+        Blue_C_VarValue_2Label          matlab.ui.control.Label
+        Blue_C_VarValue_3Label          matlab.ui.control.Label
+        Blue_C_VarValue_4Label          matlab.ui.control.Label
+        Blue_C_NumValue_1Label          matlab.ui.control.Label
+        Blue_C_NumValue_2Label          matlab.ui.control.Label
+        Blue_C_NumValue_3Label          matlab.ui.control.Label
+        Blue_C_NumValue_4Label          matlab.ui.control.Label
+        test_C_reynoldLabel             matlab.ui.control.Label
+        test_C_frictionLabel            matlab.ui.control.Label
+        AnswerEditField_2Label_2        matlab.ui.control.Label
+        Blue_C_User_Input               matlab.ui.control.NumericEditField
+        CheckMark_C_Blue                matlab.ui.control.Image
+        UnCheckMark_C_Blue              matlab.ui.control.Image
+        TryAgain_C_Blue                 matlab.ui.control.Image
+        YellowTab                       matlab.ui.container.Tab
+        BoundednessCheckBox             matlab.ui.control.CheckBox
+        DFlowCheckBox                   matlab.ui.control.CheckBox
+        RectilinearCheckBox             matlab.ui.control.CheckBox
+        NoEndEffectsCheckBox            matlab.ui.control.CheckBox
+        AxisofSymmetryCheckBox          matlab.ui.control.CheckBox
+        NoGravityEffectsCheckBox        matlab.ui.control.CheckBox
+        NoPressureGradientCheckBox      matlab.ui.control.CheckBox
+        NewtonianCheckBox               matlab.ui.control.CheckBox
+        IncompressibleCheckBox          matlab.ui.control.CheckBox
+        StressatABoundaryCheckBox       matlab.ui.control.CheckBox
+        NoSlipMoreThan2BoundariesCheckBox  matlab.ui.control.CheckBox
+        NoSlipatExactlyOneBoundaryCheckBox  matlab.ui.control.CheckBox
+        YellowWindow                    matlab.ui.control.Image
+        CheckAnswerButton               matlab.ui.control.Button
+        YellowChallengeTab              matlab.ui.container.Tab
+        Label1_2                        matlab.ui.control.Label
+        Label2_2                        matlab.ui.control.Label
+        Label3_2                        matlab.ui.control.Label
+        Label4_2                        matlab.ui.control.Label
+        ListBox_5                       matlab.ui.control.ListBox
+        ListBox_6                       matlab.ui.control.ListBox
+        ListBox_7                       matlab.ui.control.ListBox
+        ListBox_8                       matlab.ui.control.ListBox
+        CheckMark_2                     matlab.ui.control.Image
+        UnCheckMark_C_Yellow            matlab.ui.control.Image
+        TryAgain_C_Yellow               matlab.ui.control.Image
+    end
+
+    
+    properties (Access = private)
+        
+        %Varaibles for fnc VocabRand and ChalVocabRand
+        %Red, Blue, and Yellow incorrection values
+        red_i=0;
+        blue_i=0;
+       
+        
+        %Varaibles for fnc VocabRand and ChalVocabRand
+        VocabList = [
+        "Density"...
+        "Specific Gravity"...
+        "Specific Weight"...
+        "Relative Viscosity"...
+        "Kinematic Viscosity"...
+        "Falling Ball Viscometer"...
+        "Capillary-Tube Viscometer"...
+        "Rotational Viscometer"...
+        "Reynolds Number"...
+        "Velocity Boundary Layer"...
+        "No Slip Condition"...
+        "Fanning Friction Factor"...
+        "Turbine"...
+        "Displacement Pump"...
+        "Centrifugal Pump"...
+        "Relative Roughness"...
+        "Cavitation"...
+        "Major Head Loss"...
+        "Minor Head Loss"...
+        ];
+        
+    DefList = [
+        "Ratio of mass of a fluid per unit of volume"...
+        "Ratio of the density of one fluid over a standard, typically water at 4C"...
+        "Aka unit weight, is a ratio of weight of fluid per unit of volume"...
+        "The tangential force per unit area, relates fluid type & rate of shear stress"...
+        "Ratio between the tangential force per unit area and density of a fluid"...
+        "Measures viscosity with falling ball and time taken to travel through fluid"...
+        "Measures viscosity with  time taken for fluids to flow through small tube"...
+        "Measures viscosity using rotating system on the fluid"...
+        "Ratio of inertial to viscous forces"...
+        "The result of viscous effects of motion between fluid and surface"...
+        "A condition where the fluids velocity is zero relative to surface"...
+        "Ratio of shear stress at surface to KE of flow"...
+        "Converts energy from fluid to mechanical energy"...
+        "Converts mechanical energy from motor to fluid via piston"...
+        "Converts mechanical energy from motor to fluid via rotating impellers"...
+        "Dependent on roughness of material used in pipe"...
+        "The effect of rapid changes of pressure causing bubbles in the fluid"...
+        "The effect of friction from pipes"...
+        "The effect of friction from fittings"... 
+        ];
+        sizetemp = 0;
+        RandList = [];
+        RandDefListWhole =[];
+        RandDefList = [];
+        CheckList =0;
+        RandDefListTxt = ["","","",""];
+        VocabListNoSpace = [""];
+        
+        %Variables for RedTab
+        Box1Correct =0;
+        Box2Correct=0;
+        Box3Correct=0;
+        Box4Correct=0;
+        BoxValue="";
+        
+        %Variables for GreenTab
+        
+        
+        handleArrayGroup1 = [];
+        handleArrayGroup2 = [];
+        handleArrayGroup3 = [];
+        handleArrayGroup4 = [];
+        
+        userLayerNum =0;
+        
+        layerNum =0;
+        
+        randLayer1Height =0;
+        randLayer2Height =0;
+        randLayer3Height =0;
+        randLayer4Height =0;
+        
+        randLayer1Visc =0;
+        randLayer2Visc =0;
+        randLayer3Visc =0;
+        randLayer4Visc =0;
+        
+        randGreenPressure =0;
+        
+        randBotVel =0;
+        randTopVel =0;
+        
+        greenscale = 0.001;
+        
+        %Variables For Yellow Tab
+        YellowCaseNum =0;
+        YellowCheckArray = zeros(1,12);
+        
+        yellow_i=0;
+        
+        %Varaibles for Yellow Challenge
+        YellowVocabList = ["Archimedes","Pascal","Sir Isaac Newton","Pitot","Poiseuille","d'Alembert","Lagrange","Venturi","Daniel Bernoulli","Navier","Stokes","Euler","Moody","Darcy","Mach","Rayleigh","Reynolds","Prandtl"];
+        YellowDefList = ["Discovered the law of buoyancy"...
+            "Defined our understanding of pressure and vacuums"...
+            "Investigated the viscosity of fluids"...
+            "Created a device for measuring the velocity of a gas"...
+            "Formulated a law for laminar flow in pipes while studying blood flow"...
+            "Published a paradox disproving fluid mechanics at their time"...
+            "Described fluid mechanics by tracking individual particles"...
+            "Deduced a method to determine flow rate via a narrowing section of piping"...
+            "Described changes in pressure in relation to potential and kinetic energy"...
+            "Described the elastic modulus and contributed to the equation applying Newton's Laws to fluids"...
+            "Described creeping flow and contributed to the equation applying Newton's Laws to fluids"...
+            "Described fluid mechanics by a control volume "...
+            "Created plots relating reynolds number and friction factor"...
+            "Contributed a law for describing flow in porous media as well as studying friction in pipes"...
+            "Studied shock waves in fluids"...
+            "Studied natural convection and boundary instability of fluids of differing density"...
+            "Formulated a dimensionless number for describing whether a flow is laminar or not"...
+            "Studied aerodynamics and invented boundary layer theory"];
+        Yellowsizetemp = 0;
+        YellowRandList = [];
+        YellowRandDefListWhole =[];
+        YellowRandDefList = [];
+        YellowCheckList =0;
+        YellowRandDefListTxt = ["","","",""];
+        YellowVocabListNoSpace = [""];
+        
+        Box5Correct=0;
+        Box6Correct=0;
+        Box7Correct=0;
+        Box8Correct=0;
+        
+           
+    %{*****************************  Blue & Blue Challenge Global Variables  ***************************************}%
+        %Variable Names
+        Blue_VarList_1 = ["h in m","γ in N/m³","σ in N/m","θ in degrees","r in m"];
+        Blue_VarList_2 = ["Re","d in m","<v> in m/s","ρ in kg/m³","μ in Pa-s", "Q in m³/s", "ṁ in kg/s", " "];
+        
+        %Array for Number Value
+        Blue_NumList_1 = [];
+        Blue_NumList_2 = [];
+        
+        %Array to randomize indices between 1-5
+        blue_value_size = [];
+        
+        %Correct answer for blue
+        Blue_Answer=0;
+        
+        %Correct answer for blue challenge
+        Blue_C_Reynold_Answer=0;
+        Blue_C_Friction_Answer=0;
+    %{****************************************************************************************************************}%
+     
+    
+    end
+    
+    methods (Access = private)
+        
+        function VocabRand(app)
+            
+            %Get list and randomize indices
+            app.RandList = randperm(app.sizetemp);
+            
+            %Grab the first four entries of the list
+            app.Label1.Text = app.VocabList(app.RandList(1));
+            app.Label2.Text = app.VocabList(app.RandList(2));
+            app.Label3.Text = app.VocabList(app.RandList(3));
+            app.Label4.Text = app.VocabList(app.RandList(4));
+            
+            %For List_Box_1
+            app.RandDefListWhole = randperm(app.sizetemp);
+            app.RandDefList = app.RandDefListWhole(1:4);
+            
+            %Check to see if the answer is already contained in the set
+            for i=1:4
+                if app.RandDefList(i) == app.RandList(1)
+                    app.CheckList=1;
+                end
+            end
+            %If it was not replace the first entry with the answer and create random permutation of the list
+            if app.CheckList ~= 1
+                app.RandDefList(1) = app.RandList(1);
+                app.RandDefList = app.RandDefList(randperm(length(app.RandDefList)));
+            end
+            %Reset the check
+            app.CheckList=0;
+            %Based on the indices grab the corresponding strings
+            for i=1:4
+                app.RandDefListTxt(i)=app.DefList(app.RandDefList(i));
+            end
+            %Set the items of the box to the set of strings
+            app.ListBox_1.Items=app.RandDefListTxt;
+            
+            
+            %For List_Box_2
+            app.RandDefListWhole = randperm(app.sizetemp);
+            app.RandDefList = app.RandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.RandDefList(i) == app.RandList(2)
+                    app.CheckList=1;
+                end
+            end
+            if app.CheckList ~= 1
+                app.RandDefList(1) = app.RandList(2);
+                app.RandDefList = app.RandDefList(randperm(length(app.RandDefList)));
+            end
+            app.CheckList=0;
+            for i=1:4
+                app.RandDefListTxt(i)=app.DefList(app.RandDefList(i));
+            end
+            app.ListBox_2.Items=app.RandDefListTxt;
+            
+            
+            %For List_Box_3
+            app.RandDefListWhole = randperm(app.sizetemp);
+            app.RandDefList = app.RandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.RandDefList(i) == app.RandList(3)
+                    app.CheckList=1;
+                end
+            end
+            if app.CheckList ~= 1
+                app.RandDefList(1) = app.RandList(3);
+                app.RandDefList = app.RandDefList(randperm(length(app.RandDefList)));
+            end
+            app.CheckList=0;
+            for i=1:4
+                app.RandDefListTxt(i)=app.DefList(app.RandDefList(i));
+            end
+            app.ListBox_3.Items=app.RandDefListTxt;
+            
+            
+            %For List_Box_4
+            app.RandDefListWhole = randperm(app.sizetemp);
+            app.RandDefList = app.RandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.RandDefList(i) == app.RandList(4)
+                    app.CheckList=1;
+                end
+            end
+            if app.CheckList ~= 1
+                app.RandDefList(1) = app.RandList(4);
+                app.RandDefList = app.RandDefList(randperm(length(app.RandDefList)));
+            end
+            app.CheckList=0;
+            for i=1:4
+                app.RandDefListTxt(i)=app.DefList(app.RandDefList(i));
+            end
+            app.ListBox_4.Items=app.RandDefListTxt;
+        end
+        
+        function ChalVocabRand(app)
+            %Randomize indices
+            %app.sizetemp = size(app.VocabList,2);
+            app.RandDefListWhole = randperm(app.sizetemp);
+            
+            %Fill in definitions using the first 4 indices of the permutation
+            app.RCDef1.Text = app.DefList(app.RandDefListWhole(1));
+            app.RCDef2.Text = app.DefList(app.RandDefListWhole(2));
+            app.RCDef3.Text = app.DefList(app.RandDefListWhole(3));
+            app.RCDef4.Text = app.DefList(app.RandDefListWhole(4));
+        end
+        
+        function plotRand(app)
+            
+            %Choose number of layers
+            %{
+            randNum = rand;
+            if randNum >=0 && randNum < 0.1
+                app.layerNum =1;
+            elseif randNum >=0.1 && randNum < 0.45
+                    app.layerNum = 2;
+            elseif randNum >=0.45 && randNum <0.67
+                    app.layerNum = 3;
+            else
+                app.layerNum = 4;
+            end
+            %}
+            app.layerNum=2;
+            
+            app.Label9.Text = num2str(app.layerNum);
+            
+            %Randomize Viscosity
+            app.randLayer1Visc = 0.1 + (5*rand);
+            app.randLayer2Visc = 0.1 + (5*rand);
+            app.randLayer3Visc = 0.1 + (5*rand);
+            app.randLayer4Visc = 0.1 + (5*rand);
+            
+            
+            
+            
+            
+            %Plot Number of Layers
+            
+            %Clear Random Plot
+            cla(app.Plot2);
+            
+            %Make Rectanlges of random height based on the number of layers
+            %The sum of the height of all layers will always be 80
+            if app.layerNum == 4
+                
+                app.randLayer1Height = 13 + 13 * rand;
+                app.randLayer2Height = 13 + 13 * rand;
+                app.randLayer3Height = 13 + 13 * rand;
+                app.randLayer4Height = 80 - app.randLayer1Height - app.randLayer2Height - app.randLayer3Height;
+                
+                
+                rectangle(app.Plot2, 'Position', [0,0,50,app.randLayer1Height], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height,50,app.randLayer2Height], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height + app.randLayer2Height,50,app.randLayer3Height], 'FaceColor', [0 0 1]);
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height + app.randLayer2Height + app.randLayer3Height,50,app.randLayer4Height], 'FaceColor', [0.5 0.5 0]);
+                
+                
+            end
+            if app.layerNum == 3
+                
+                app.randLayer1Height = 17 + 17 * rand;
+                app.randLayer2Height = 17 + 17 * rand;
+                app.randLayer3Height = 80 - app.randLayer1Height - app.randLayer2Height;
+                
+                %Set unused values to 0 for simplifying check
+                app.randLayer4Height=0;
+                app.randLayer4Visc=1;
+                
+                rectangle(app.Plot2, 'Position', [0,0,50,app.randLayer1Height], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height,50,app.randLayer2Height], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height + app.randLayer2Height,50,app.randLayer3Height], 'FaceColor', [0 0 1]);
+                
+            end
+            if app.layerNum == 2
+                
+                app.randLayer1Height = 30 + 30 * rand;
+                app.randLayer2Height = 80 - app.randLayer1Height;
+                
+                %Set unused values to 0 for simplifying check
+                app.randLayer4Height=0;
+                app.randLayer4Visc=1;
+                
+                app.randLayer3Height=0;
+                app.randLayer3Visc=1;
+                
+                
+                
+                YIn1 = linspace(0.01,app.randLayer1Height,100);
+                %disp(YIn1)
+                YIn2 = linspace(app.randLayer1Height,80,100);
+                
+                velOut1 = zeros(1,100);
+                velOut2 = zeros(1,100);
+                
+                for i =1:100
+                    disp(YIn1(i))
+                    velOut1(i)=TwoLProfilePlotL1(app,app.randLayer1Visc,app.randLayer2Visc,app.randLayer1Height,app.randLayer2Height,app.randGreenPressure, app.randTopVel, app.randBotVel, YIn1(i));
+                    %disp(velOut1(i))
+                end
+                
+                for i =1:100
+                    velOut2(i)=TwoLProfilePlotL2(app,app.randLayer1Visc,app.randLayer2Visc,app.randLayer1Height,app.randLayer2Height,app.randGreenPressure, app.randTopVel, app.randBotVel, YIn2(i));
+                end
+               
+                hold(app.Plot2,'on');
+                rectangle(app.Plot2, 'Position', [0,0,50,app.randLayer1Height], 'FaceColor', [1 0 0]);
+                
+                
+                rectangle(app.Plot2, 'Position', [0,app.randLayer1Height,50,app.randLayer2Height], 'FaceColor', [0 1 0]);
+                
+                plot(app.Plot2,velOut1,YIn1,'Color','k');
+                
+                plot(app.Plot2,velOut2,YIn2,'Color','k');
+                
+                hold(app.Plot2,'off');
+                close;
+                
+                
+                
+                %app.GreenPressure.Value = app.randGreenPressure;
+                %app.BtmV.Value = app.randBotVel;
+                %app.TopV.Value = app.randTopVel;
+                
+            end
+            if app.layerNum == 1
+               
+                app.randLayer1Height =80;
+                
+               YIn1 = linspace(0,80,100);
+               velOut1 = zeros(1,100);
+               for i = 1:100
+                   velOut1(i) = OneLProfilePlotL1(app, app.randLayer1Visc, app.randGreenPressure, app.randTopVel, app.randBotVel, YIn1(i));
+               end
+                
+               hold(app.Plot2,'on');
+                rectangle(app.Plot2, 'Position', [0,0,50,80], 'FaceColor', [1 0 0]);
+                
+                plot(app.Plot2,velOut1,YIn1,'Color','k');
+                
+                
+                
+                
+                hold(app.Plot2,'off');
+                close;
+                
+                %Set unused values to 0 for simplifying check
+                app.randLayer4Height=0;
+                app.randLayer4Visc=1;
+                
+                app.randLayer3Height=0;
+                app.randLayer3Visc=1;
+                
+                app.randLayer2Height=0;
+                app.randLayer2Visc=1;
+                
+                %app.GreenPressure.Value = app.randGreenPressure;
+                %app.BtmV.Value = app.randBotVel;
+                %app.TopV.Value = app.randTopVel;
+                %app.Label9.Text = num2str(app.randLayer1Visc);
+                
+            end
+            
+                
+        end
+        
+        function regenPlot(app)
+            %cla(app.Plot1);
+            
+            if app.userLayerNum == 4
+                rectangle(app.Plot1, 'Position', [0,0,50,app.Layer1Height.Value], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value,50,app.Layer2Height.Value], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value + app.Layer2Height.Value,50,app.Layer3Height.Value], 'FaceColor', [0 0 1]);
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value,50,app.Layer4Height.Value], 'FaceColor', [0.5 0.5 0]);
+                
+            end
+            if app.userLayerNum == 3
+                rectangle(app.Plot1, 'Position', [0,0,50,app.Layer1Height.Value], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value,50,app.Layer2Height.Value], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value + app.Layer2Height.Value,50,app.Layer3Height.Value], 'FaceColor', [0 0 1]);
+                
+            end
+            if app.userLayerNum == 2
+                %cla(app.Plot1)
+                YIn1 = linspace(0,app.Layer1Height.Value,100);
+                YIn2 = linspace(app.Layer1Height.Value,80,100);
+                
+                velOut1 = zeros(1,100);
+                velOut2 = zeros(1,100);
+
+                for i =1:100
+                    velOut1(i)=TwoLProfilePlotL1(app,app.Layer1Visc.Value,app.Layer2Visc.Value,app.Layer1Height.Value,app.Layer2Height.Value,app.GreenPressure.Value, app.TopV.Value, app.BtmV.Value, YIn1(i));
+                    disp(velOut1(i))
+                end
+                
+                for i =1:100
+                    velOut2(i)=TwoLProfilePlotL2(app,app.Layer1Visc.Value,app.Layer2Visc.Value,app.Layer1Height.Value,app.Layer2Height.Value,app.GreenPressure.Value, app.TopV.Value, app.BtmV.Value, YIn2(i));
+                end
+               
+                hold(app.Plot1,'on');
+                rectangle(app.Plot1, 'Position', [0,0,50,app.Layer1Height.Value], 'FaceColor', [1 0 0]);
+                
+                rectangle(app.Plot1, 'Position', [0,app.Layer1Height.Value,50,app.Layer2Height.Value], 'FaceColor', [0 1 0]);
+                
+                plot(app.Plot1,velOut1,YIn1,'Color','k');
+                
+                plot(app.Plot1,velOut2,YIn2,'Color','k');
+                
+                hold(app.Plot1,'off');
+                %close;
+                
+            end
+            if app.userLayerNum == 1
+                    
+                YIn1 = linspace(0,80,100);
+                velOut1 = zeros(1,100);
+                for i = 1:100
+                    velOut1(i) = OneLProfilePlotL1(app, app.Layer1Visc.Value, app.GreenPressure.Value, app.TopV.Value, app.BtmV.Value, YIn1(i));
+                end
+                
+                hold(app.Plot1,'on');
+                rectangle(app.Plot1, 'Position', [0,0,50,80], 'FaceColor', [1 0 0]);
+                
+                plot(app.Plot1,velOut1,YIn1,'Color','k');
+                
+                
+                
+                hold(app.Plot1,'off');
+                %close;
+            end
+        end
+        
+        function results = TwoLProfilePlotL1(app,L1Visc,L2Visc,L1Height,L2Height,Pressure,TopVel,BotVel,Y)
+
+            L1Height = L1Height * app.greenscale;
+            L2Height = L2Height *app.greenscale;
+            totHeight = 80 *app.greenscale;
+            Y=Y * app.greenscale;
+            Pressure=-1*Pressure;
+            
+            C0 = (((Pressure/(2*L1Visc*L2Visc))*(L2Visc*(L1Height^2)-L1Visc*(L1Height^2-totHeight^2)))+BotVel-TopVel) / ((L1Visc*(L1Height-totHeight)-L2Visc*(L1Height))/(L1Visc*L2Visc));
+                
+            
+            results = (0.5*Pressure/L1Visc)*Y^2 + C0*Y/L1Visc + BotVel;
+            
+
+            
+            %results = -1*((Pressure * Y^2)/(2*L1Visc)) - (Y/L1Visc)*(-0.5*Pressure*(L2Visc*(L1Height^2) + L1Visc * (totHeight^2 - L1Height^2)) + L1Visc * L2Visc * (BotVel - TopVel)/(L1Visc * (totHeight - L1Height) + L2Visc * (L1Height))) + BotVel;
+            %disp(results)
+        end
+        
+        function results = TwoLProfilePlotL2(app,L1Visc,L2Visc,L1Height,L2Height,Pressure,TopVel,BotVel,Y)
+            L1Height = L1Height * app.greenscale;
+            L2Height = L2Height *app.greenscale;
+            totHeight = 80 *app.greenscale;
+            Y=Y * app.greenscale;
+            Pressure=-1*Pressure;
+
+            
+            C0 = (((Pressure/(2*L1Visc*L2Visc))*(L2Visc*(L1Height^2)-L1Visc*(L1Height^2-totHeight^2)))+BotVel-TopVel) / ((L1Visc*(L1Height-totHeight)-L2Visc*(L1Height))/(L1Visc*L2Visc));
+            
+            results = (0.5*Pressure/L2Visc)*((Y^2)-totHeight^2) + (C0/L2Visc)*(Y-totHeight) + TopVel;
+            
+            %{
+            results = ((Pressure * (totHeight^2 - Y^2)/(2*L2Visc))) + ...
+                ((totHeight-Y)/L2Visc)* ...
+                ((-0.5*Pressure*(L2Visc*(L1Height^2) + L1Visc * (totHeight^2 - L1Height^2)) + L1Visc * L2Visc * (BotVel - TopVel)) / ... 
+                (L1Visc * (totHeight - L1Height) + L2Visc * (L1Height))) +...
+                TopVel; 
+            
+            
+            C1 = ((TopVel - BotVel) + (0.5*Pressure)*(((L1Height^2)/L1Visc) - ((L1Height^2)/L2Visc) + ((totHeight^2)/L2Visc))) / ...
+                ((L1Height/L2Visc) - (L1Height/L1Visc) - (totHeight/L2Visc));
+            
+            results = (-1/L2Visc)*(0.5*Pressure*Y^2+C1*Y) + (TopVel + (1/L2Visc)*(0.5*Pressure * totHeight^2 + C1 *totHeight));
+            %}
+        end
+        
+        function greenCheck(app)
+            Sum=0;
+            
+            HighTol=1.1;
+            LowTol=0.9;
+            %Height 1 
+            if app.Layer1Height.Value <= app.randLayer1Height*HighTol && app.Layer1Height.Value >= app.randLayer1Height*LowTol
+                Sum=Sum+1;
+                %disp('H1')
+                app.Layer1HeightLabel.FontWeight = 'normal';
+                app.Layer1HeightLabel.FontColor = 'k';
+            else
+                app.Layer1HeightLabel.FontWeight = 'bold';
+                app.Layer1HeightLabel.FontColor = 'r';
+            end
+            %Height 2
+            if app.Layer2Height.Value <= app.randLayer2Height*HighTol && app.Layer2Height.Value >= app.randLayer2Height*LowTol
+                Sum=Sum+1;
+                %disp('H2')
+                app.Layer2HeightLabel.FontWeight = 'normal';
+                app.Layer2HeightLabel.FontColor = 'k';
+            else
+                app.Layer2HeightLabel.FontWeight = 'bold';
+                app.Layer2HeightLabel.FontColor = 'r';
+            end
+            %Height 3
+            if app.Layer3Height.Value <= app.randLayer3Height*HighTol && app.Layer3Height.Value >= app.randLayer3Height*LowTol
+                Sum=Sum+1;
+                %disp('H3')
+                app.Layer3HeightLabel.FontWeight = 'normal';
+                app.Layer3HeightLabel.FontColor = 'k';
+            else
+                app.Layer3HeightLabel.FontWeight = 'bold';
+                app.Layer3HeightLabel.FontColor = 'r';
+            end
+            %Height 4
+            if app.Layer4Height.Value <= app.randLayer4Height*HighTol && app.Layer4Height.Value >= app.randLayer4Height*LowTol
+                Sum=Sum+1;
+                %disp('H4')
+                app.Layer4HeightLabel.FontWeight = 'normal';
+                app.Layer4HeightLabel.FontColor = 'k';
+            else
+                app.Layer4HeightLabel.FontWeight = 'bold';
+                app.Layer4HeightLabel.FontColor = 'r';
+            end
+            %Visc 1
+            if app.Layer1Visc.Value <= app.randLayer1Visc*HighTol && app.Layer1Visc.Value >= app.randLayer1Visc*LowTol
+                Sum=Sum+1;
+                %disp('V1')
+                app.Layer1ViscLabel.FontWeight = 'normal';
+                app.Layer1ViscLabel.FontColor = 'k';
+            else
+                app.Layer1ViscLabel.FontWeight = 'bold';
+                app.Layer1ViscLabel.FontColor = 'r';
+            end
+            %Visc 2
+            if app.Layer2Visc.Value <= app.randLayer2Visc*HighTol && app.Layer2Visc.Value >= app.randLayer2Visc*LowTol
+                Sum=Sum+1;
+                %disp('V2')
+                app.Layer2ViscLabel.FontWeight = 'normal';
+                app.Layer2ViscLabel.FontColor = 'k';
+            else
+                app.Layer2ViscLabel.FontWeight = 'bold';
+                app.Layer2ViscLabel.FontColor = 'r';
+            end
+            %Visc 3
+            if app.Layer3Visc.Value <= app.randLayer3Visc*HighTol && app.Layer3Visc.Value >= app.randLayer3Visc*LowTol
+                Sum=Sum+1;
+                %disp('V3')
+                app.Layer3ViscLabel.FontWeight = 'normal';
+                app.Layer3ViscLabel.FontColor = 'k';
+            else
+                app.Layer3ViscLabel.FontWeight = 'bold';
+                app.Layer3ViscLabel.FontColor = 'r';
+            end
+            %Visc 4
+            if app.Layer4Visc.Value <= app.randLayer4Visc*HighTol && app.Layer4Visc.Value >= app.randLayer4Visc*LowTol
+                Sum=Sum+1;
+                %disp('V4')
+                app.Layer4ViscLabel.FontWeight = 'normal';
+                app.Layer4ViscLabel.FontColor = 'k';
+            else
+                app.Layer4ViscLabel.FontWeight = 'bold';
+                app.Layer4ViscLabel.FontColor = 'r';
+            end
+            %Top Plate Velocity
+            if app.TopV.Value <= app.randTopVel*HighTol && app.TopV.Value >= app.randTopVel*LowTol
+                Sum=Sum+1;
+                %disp('TPV')
+                app.TopPlateVeloictyEditFieldLabel.FontWeight = 'normal';
+                app.TopPlateVeloictyEditFieldLabel.FontColor = 'k';
+            else
+                app.TopPlateVeloictyEditFieldLabel.FontWeight = 'bold';
+                app.TopPlateVeloictyEditFieldLabel.FontColor = 'r';
+            end
+            %Bottom Plate Velocity
+            if app.BtmV.Value <= app.randBotVel*HighTol && app.BtmV.Value >= app.randBotVel*LowTol
+                Sum=Sum+1;
+                %disp('BPV')
+                app.BottomPlateVeloictyLabel.FontWeight = 'normal';
+                app.BottomPlateVeloictyLabel.FontColor = 'k';
+            else
+                app.BottomPlateVeloictyLabel.FontWeight = 'bold';
+                app.BottomPlateVeloictyLabel.FontColor = 'r';
+            end
+            %Pressure
+            if app.GreenPressure.Value <= app.randGreenPressure*HighTol && app.GreenPressure.Value >= app.randGreenPressure*LowTol
+                Sum=Sum+1;
+                %disp('P')
+                app.PressureEditFieldLabel.FontWeight = 'normal';
+                app.PressureEditFieldLabel.FontColor = 'k';
+            else
+                app.PressureEditFieldLabel.FontWeight = 'bold';
+                app.PressureEditFieldLabel.FontColor = 'r';
+            end
+            
+            
+            %Determine if all values match and take corresponding action if all match
+            %A success is when Sum=11
+            
+            if Sum ==11
+                %Show Check
+                app.CheckMarkGreen.Visible='on';
+                pause(1);
+                app.CheckMarkGreen.Visible='off';
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Reset the tab and values
+                app.LayerCount.Value = '0';
+                
+                app.Layer1Height.Value=0;
+                app.Layer1Visc.Value=1;
+                
+                app.Layer2Height.Value=0;
+                app.Layer2Visc.Value=1;
+                
+                app.Layer3Height.Value=0;
+                app.Layer3Visc.Value=1;
+                
+                app.Layer4Height.Value=0;
+                app.Layer4Visc.Value=1;
+                
+                cla(app.Plot1);
+                set(app.handleArrayGroup1, 'Visible', 'off');
+                set(app.handleArrayGroup2, 'Visible', 'off');
+                set(app.handleArrayGroup3, 'Visible', 'off');
+                set(app.handleArrayGroup4, 'Visible', 'off');
+            end
+            
+        end
+        
+        function results = OneLProfilePlotL1(app,Visc,Pressure,TopVel,BotVel,Y)
+            totHeight = 80 *app.greenscale;
+            Y=Y * app.greenscale;
+            
+            results = -1*(Pressure*(Y^2))/(2*Visc) - (Y/Visc)*(-0.5*(Pressure*totHeight) + (BotVel - TopVel)*(Visc/totHeight)) + BotVel;
+        end
+        
+        function yellowCheck(app)
+            
+            %For Annulus
+            if app.YellowCaseNum == 1
+                yellowArraySet(app);
+                if isequal(app.YellowCheckArray, [0 1 1 1 1 0 0 1 1 0 1 0]) == 1
+                    app.YellowWindow.ImageSource = 'CheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                elseif app.yellow_i == 1
+                    app.YellowWindow.ImageSource = 'UnCheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                else
+                    app.YellowWindow.ImageSource = 'TryAgain.png';
+                    pause(1);
+                    app.YellowWindow.ImageSource = 'Annulus.png';
+                    app.yellow_i = 1;
+                end
+            end
+            
+            %For Pipe
+            if app.YellowCaseNum == 2
+                yellowArraySet(app);
+                if isequal(app.YellowCheckArray, [1 1 1 1 1 0 0 1 1 0 0 1]) == 1
+                    app.YellowWindow.ImageSource = 'CheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                elseif app.yellow_i == 1
+                    app.YellowWindow.ImageSource = 'UnCheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                else
+                    app.YellowWindow.ImageSource = 'TryAgain.png';
+                    pause(1);
+                    app.YellowWindow.ImageSource = 'Pipe.png';
+                    app.yellow_i = 1;
+                end
+            end
+            
+            %For Plates
+            if app.YellowCaseNum == 3
+                yellowArraySet(app);
+                if isequal(app.YellowCheckArray, [0 1 1 1 0 1 0 1 1 0 1 0]) == 1
+                    app.YellowWindow.ImageSource = 'CheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                elseif app.yellow_i == 1
+                    app.YellowWindow.ImageSource = 'UnCheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                else
+                    app.YellowWindow.ImageSource = 'TryAgain.png';
+                    pause(1);
+                    app.YellowWindow.ImageSource = 'Plates.png';
+                    app.yellow_i = 1;
+                end
+            end
+            
+            %For GasPlate
+            if app.YellowCaseNum == 4
+                yellowArraySet(app);
+                if isequal(app.YellowCheckArray, [0 1 1 1 0 1 0 1 1 1 0 1]) == 1
+                    app.YellowWindow.ImageSource = 'CheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                elseif app.yellow_i == 1
+                    app.YellowWindow.ImageSource = 'UnCheckMark.png';
+                    pause(1);
+                    
+                    app.BoundednessCheckBox.Value = 0;
+                    app.DFlowCheckBox.Value = 0;
+                    app.RectilinearCheckBox.Value = 0;
+                    app.NoEndEffectsCheckBox.Value = 0;
+                    app.AxisofSymmetryCheckBox.Value = 0;
+                    app.NoGravityEffectsCheckBox.Value = 0;
+                    app.NoPressureGradientCheckBox.Value = 0;
+                    app.NewtonianCheckBox.Value = 0;
+                    app.IncompressibleCheckBox.Value = 0;
+                    app.StressatABoundaryCheckBox.Value = 0;
+                    app.NoSlipMoreThan2BoundariesCheckBox.Value = 0;
+                    app.NoSlipatExactlyOneBoundaryCheckBox.Value = 0;
+                    
+                    
+                    app.TabGroup.SelectedTab = app.MainPage;
+                    
+                    app.yellow_i = 0;
+                    
+                else
+                    app.YellowWindow.ImageSource = 'TryAgain.png';
+                    pause(1);
+                    app.YellowWindow.ImageSource = 'GasPlate.png';
+                    app.yellow_i = 1;
+                end
+            end
+            
+        end
+        
+        function yellowArraySet(app)
+            app.YellowCheckArray(1) = app.BoundednessCheckBox.Value;
+            app.YellowCheckArray(2) = app.DFlowCheckBox.Value;
+            app.YellowCheckArray(3) = app.RectilinearCheckBox.Value;
+            app.YellowCheckArray(4) = app.NoEndEffectsCheckBox.Value;
+            app.YellowCheckArray(5) = app.AxisofSymmetryCheckBox.Value;
+            app.YellowCheckArray(6) = app.NoGravityEffectsCheckBox.Value;
+            app.YellowCheckArray(7) = app.NoPressureGradientCheckBox.Value;
+            app.YellowCheckArray(8) = app.NewtonianCheckBox.Value;
+            app.YellowCheckArray(9) = app.IncompressibleCheckBox.Value;
+            app.YellowCheckArray(10) = app.StressatABoundaryCheckBox.Value;
+            app.YellowCheckArray(11) = app.NoSlipMoreThan2BoundariesCheckBox.Value;
+            app.YellowCheckArray(12) = app.NoSlipatExactlyOneBoundaryCheckBox.Value;
+        end
+        
+        function YellowChalRand(app)
+            %Get list and randomize indices
+            app.YellowRandList = randperm(app.Yellowsizetemp);
+            
+            %Grab the first four entries of the list
+            app.Label1_2.Text = app.YellowVocabList(app.YellowRandList(1));
+            app.Label2_2.Text = app.YellowVocabList(app.YellowRandList(2));
+            app.Label3_2.Text = app.YellowVocabList(app.YellowRandList(3));
+            app.Label4_2.Text = app.YellowVocabList(app.YellowRandList(4));
+            
+            %For List_Box_5
+            app.YellowRandDefListWhole = randperm(app.Yellowsizetemp);
+            app.YellowRandDefList = app.YellowRandDefListWhole(1:4);
+            
+            %Check to see if the answer is already contained in the set
+            for i=1:4
+                if app.YellowRandDefList(i) == app.YellowRandList(1)
+                    app.YellowCheckList=1;
+                end
+            end
+            %If it was not replace the first entry with the answer and create random permutation of the list
+            if app.YellowCheckList ~= 1
+                app.YellowRandDefList(1) = app.YellowRandList(1);
+                app.YellowRandDefList = app.YellowRandDefList(randperm(length(app.YellowRandDefList)));
+            end
+            %Reset the check
+            app.YellowCheckList=0;
+            %Based on the indices grab the corresponding strings
+            for i=1:4
+                app.YellowRandDefListTxt(i)=app.YellowDefList(app.YellowRandDefList(i));
+            end
+            %Set the items of the box to the set of strings
+            app.ListBox_5.Items=app.YellowRandDefListTxt;
+            
+            
+            %For List_Box_6
+            app.YellowRandDefListWhole = randperm(app.Yellowsizetemp);
+            app.YellowRandDefList = app.YellowRandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.YellowRandDefList(i) == app.YellowRandList(2)
+                    app.YellowCheckList=1;
+                end
+            end
+            if app.YellowCheckList ~= 1
+                app.YellowRandDefList(1) = app.YellowRandList(2);
+                app.YellowRandDefList = app.YellowRandDefList(randperm(length(app.YellowRandDefList)));
+            end
+            app.YellowCheckList=0;
+            for i=1:4
+                app.YellowRandDefListTxt(i)=app.YellowDefList(app.YellowRandDefList(i));
+            end
+            app.ListBox_6.Items=app.YellowRandDefListTxt;
+            
+            
+            %For List_Box_7
+            app.YellowRandDefListWhole = randperm(app.Yellowsizetemp);
+            app.YellowRandDefList = app.YellowRandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.YellowRandDefList(i) == app.YellowRandList(3)
+                    app.YellowCheckList=1;
+                end
+            end
+            if app.YellowCheckList ~= 1
+                app.YellowRandDefList(1) = app.YellowRandList(3);
+                app.YellowRandDefList = app.YellowRandDefList(randperm(length(app.YellowRandDefList)));
+            end
+            app.YellowCheckList=0;
+            for i=1:4
+                app.YellowRandDefListTxt(i)=app.YellowDefList(app.YellowRandDefList(i));
+            end
+            app.ListBox_7.Items=app.YellowRandDefListTxt;
+            
+            
+            %For List_Box_8
+            app.YellowRandDefListWhole = randperm(app.Yellowsizetemp);
+            app.YellowRandDefList = app.YellowRandDefListWhole(1:4);
+            
+            for i=1:4
+                if app.YellowRandDefList(i) == app.YellowRandList(4)
+                    app.YellowCheckList=1;
+                end
+            end
+            if app.YellowCheckList ~= 1
+                app.YellowRandDefList(1) = app.YellowRandList(4);
+                app.YellowRandDefList = app.YellowRandDefList(randperm(length(app.YellowRandDefList)));
+            end
+            app.YellowCheckList=0;
+            for i=1:4
+                app.YellowRandDefListTxt(i)=app.YellowDefList(app.YellowRandDefList(i));
+            end
+            app.ListBox_8.Items=app.YellowRandDefListTxt;
+        end
+        %{*****************************  Blue & Blue Challenge Functions  ***************************************}%
+        
+        %****BLUE: RANDOM VALUE GENERATION SURFACE TENSION*****%
+        
+        function Blue_NumValue_Random_Select_Surface(app)
+            
+            %%Randomly Select Value for h in m
+            random_height = 0.01+0.005*rand;
+            app.Blue_NumList_1(1) = round(random_height,3,'significant');
+            
+            %%Randomly Select Value for γ in N/m^3
+            random_sw = 10000+2500*rand;
+            app.Blue_NumList_1(2) = round(random_sw,3,'significant');
+            
+            %%Randomly Select Value for σ in N/m
+            random_st = 0.04+0.06*rand;
+            app.Blue_NumList_1(3) = round(random_st,3,'significant');
+            
+            %%Randomly Select Value for θ in degrees
+            random_degree = 45*rand;
+            app.Blue_NumList_1(4) = round(random_degree);
+            
+            %%Randomly Select Value for r in m
+            random_r = 0.001+0.002*rand;
+            app.Blue_NumList_1(5) = round(random_r,3,'significant');
+        end
+        
+        %****BLUE: RANDOM VALUE GENERATION REYNOLD NUMBER*****%
+        
+        function Blue_NumValue_Random_Select_Reynold(app)
+            
+            %%Randomly Select Value for Re
+            random_Re = 100+1900*rand;
+            app.Blue_NumList_2(1) = round(random_Re,3,'significant');
+            
+            %%Randomly Select Value for d in m
+            random_d = 0.015+0.035*rand;
+            app.Blue_NumList_2(2) = round(random_d,3,'significant');
+            
+            %%Randomly Select Value for <v> in m/s
+            random_v = 0.013+26000*rand;
+            app.Blue_NumList_2(3) = round(random_v,3,'significant');
+            
+            %%Randomly Select Value for ρ in kg/m^3
+            random_rho = 500+1000*rand;
+            app.Blue_NumList_2(4) = round(random_rho,3,'significant');
+            
+            %%Randomly Select Value for μ in Pa*s
+            random_mu = 0.001+1000*rand;
+            app.Blue_NumList_2(5) = round(random_mu,3,'significant');
+            
+            %%Randomly Select Value for Q in m^3/3
+            random_flow = 0.01+1000*rand;
+            app.Blue_NumList_2(6) = round(random_flow,3,'significant');
+            
+            %%Randomly Select Value for m-dot in kg/(m-s)
+            random_mass = 700+1000000*rand;
+            app.Blue_NumList_2(7) = round(random_mass,3,'significant');
+        end
+        
+        %****BLUE: RANDOM QUESTION TYPE SELECTION & EQUATION SOLVER SURFACE TENSION*****%
+        
+        function Blue_VarValue_Random_Select_Surface(app)
+            %**QUESITON TYPE**%
+            %Randomize indices between 1-5
+            app.blue_value_size = randperm(5);
+           
+            %%Ensure no theta is solved for
+            i=0;
+            while (i<20 && app.blue_value_size(5)==4)
+                app.blue_value_size = randperm(5);
+                i=i+1;
+            end
+            
+            %Fill in variables randomly into VarValue labels
+            app.Blue_VarValue_1Label.Text = app.Blue_VarList_1(app.blue_value_size(1));
+            app.Blue_VarValue_2Label.Text = app.Blue_VarList_1(app.blue_value_size(2));
+            app.Blue_VarValue_3Label.Text = app.Blue_VarList_1(app.blue_value_size(3));
+            app.Blue_VarValue_4Label.Text = app.Blue_VarList_1(app.blue_value_size(4));
+            app.Blue_VarValue_5Label.Text = app.Blue_VarList_1(app.blue_value_size(5));
+            
+            %Fill in variables randomly into NumValue labels
+            app.Blue_NumValue_1Label.Text = num2str(app.Blue_NumList_1(app.blue_value_size(1)));
+            app.Blue_NumValue_2Label.Text = num2str(app.Blue_NumList_1(app.blue_value_size(2)));
+            app.Blue_NumValue_3Label.Text = num2str(app.Blue_NumList_1(app.blue_value_size(3)));
+            app.Blue_NumValue_4Label.Text = num2str(app.Blue_NumList_1(app.blue_value_size(4)));
+            
+            %**EQUAITON SOLVER**%
+            if (app.blue_value_size(5)==1)
+                
+                %Solve for height
+                height_answer=((2)*(app.Blue_NumList_1(3))*cosd(app.Blue_NumList_1(4)))/((app.Blue_NumList_1(2))*(app.Blue_NumList_1(5)));
+                app.Blue_Answer=height_answer;
+                
+            elseif (app.blue_value_size(5)==2)
+                
+                %Solve for specific weight
+                sw_answer= (2*(app.Blue_NumList_1(3))*(cosd(app.Blue_NumList_1(4))))/((app.Blue_NumList_1(1))*(app.Blue_NumList_1(5)));
+                app.Blue_Answer=sw_answer;
+                
+            elseif (app.blue_value_size(5)==3)
+                
+                %Solve for surface tension
+                st_answer= ((app.Blue_NumList_1(5))*(app.Blue_NumList_1(2))*(app.Blue_NumList_1(1)))/(2*(cosd(app.Blue_NumList_1(4))));
+                app.Blue_Answer=st_answer;
+                
+            %%No solve for cos
+                
+            elseif (app.blue_value_size(5)==5)
+                
+                %Solve for radius
+                radius_answer=((2)*(app.Blue_NumList_1(3))*(cosd(app.Blue_NumList_1(4))))/((app.Blue_NumList_1(2))*(app.Blue_NumList_1(1)));
+                
+                %If radius equals 0, run until fixed
+                i=0;
+                while (i<100 && round(radius_answer,3)==0)
+                    %Rescramble value
+                    i=i+1;
+                    app.Blue_NumValue_Random_Select_Surface
+                end
+                
+                %Store answer
+                app.Blue_Answer=radius_answer;
+            end
+            
+            %%Store value to be checked
+            app.Blue_Answer=round(app.Blue_Answer,3,'significant');
+            
+            %%Display tested code
+            app.test_answerLabel.Text = num2str(round(app.Blue_Answer,3,'significant'));
+            
+        end
+        
+        %****BLUE: RANDOM QUESTION TYPE SELECTION & EQUATION SOLVER REYNOLDS NUMBER*****%
+        function Blue_VarValue_Random_Select_Reynold(app)
+            %**QUESITON TYPE**%
+            %Randomize indices between 1-5
+            app.blue_value_size = randperm(5);
+            
+            %Fill in variables randomly into VarValue labels
+            app.Blue_VarValue_1Label.Text = app.Blue_VarList_2(app.blue_value_size(1));
+            app.Blue_VarValue_2Label.Text = app.Blue_VarList_2(app.blue_value_size(2));
+            app.Blue_VarValue_3Label.Text = app.Blue_VarList_2(app.blue_value_size(3));
+            app.Blue_VarValue_4Label.Text = app.Blue_VarList_2(app.blue_value_size(4));
+            app.Blue_VarValue_5Label.Text = app.Blue_VarList_2(app.blue_value_size(5));
+            
+            %Fill in variables randomly into NumValue labels
+            app.Blue_NumValue_1Label.Text = num2str(app.Blue_NumList_2(app.blue_value_size(1)));
+            app.Blue_NumValue_2Label.Text = num2str(app.Blue_NumList_2(app.blue_value_size(2)));
+            app.Blue_NumValue_3Label.Text = num2str(app.Blue_NumList_2(app.blue_value_size(3)));
+            app.Blue_NumValue_4Label.Text = num2str(app.Blue_NumList_2(app.blue_value_size(4)));
+            
+            %**EQUAITON SOLVER**%
+            if (app.blue_value_size(5)==1)
+                
+                %Solve for Re
+                Re_answer= ((app.Blue_NumList_2(2))*(app.Blue_NumList_2(3))*(app.Blue_NumList_2(4)))/(app.Blue_NumList_2(5));
+                app.Blue_Answer=Re_answer;
+                
+            elseif (app.blue_value_size(5)==2)
+                
+                %Solve for diameter
+                d_answer= ((app.Blue_NumList_2(1))*(app.Blue_NumList_2(5)))/((app.Blue_NumList_2(3))*(app.Blue_NumList_2(4)));
+                app.Blue_Answer=d_answer;
+                
+            elseif (app.blue_value_size(5)==3)
+                
+                %Solve for average velocity
+                v_answer= ((app.Blue_NumList_2(1))*(app.Blue_NumList_2(5)))/((app.Blue_NumList_2(2))*(app.Blue_NumList_2(4)));
+                app.Blue_Answer=v_answer;
+                
+            elseif (app.blue_value_size(5)==4)
+                
+                %Solve for rho
+                rho_answer= ((app.Blue_NumList_2(1))*(app.Blue_NumList_2(5)))/((app.Blue_NumList_2(3))*(app.Blue_NumList_2(2)));
+                app.Blue_Answer=rho_answer;
+                
+            elseif (app.blue_value_size(5)==5)
+                
+                %Solve for mu
+                mu_answer= ((app.Blue_NumList_2(2))*(app.Blue_NumList_2(3))*(app.Blue_NumList_2(4)))/(app.Blue_NumList_2(1));
+                app.Blue_Answer=mu_answer;
+                
+            end
+            
+            %%Store value to be checked
+            app.Blue_Answer=round(app.Blue_Answer,3,'significant');
+            
+            %%Display tested code
+            app.test_answerLabel.Text = num2str(round(app.Blue_Answer,3,'significant'));
+            
+        end
+        
+        %****BLUE CHALLENGE: SELECT MASS, VOLUME, OR VELOCITY & SOLVE REYNOLDS NUMBER*****%
+        function Blue_Challenge_Select_VarValue(app)
+            
+            %Select velocity, mass, or volume
+            blue_challenge_reynold_type=1+round(rand)+round(rand);
+            if (blue_challenge_reynold_type==1)
+                %%Velocity Problem
+                %*********SOLVE REYNOLDS NUMBER PROBLEM***********%
+                Re_Velocity_Answer= ((app.Blue_NumList_2(2))*(app.Blue_NumList_2(3))*(app.Blue_NumList_2(4)))/(app.Blue_NumList_2(5));
+                app.Blue_C_Reynold_Answer= Re_Velocity_Answer;
+                
+                %*********FILLING IN INFORMATION TO USER***********%
+                %Fill in variables into blue challenge labels
+                app.Blue_C_VarValue_1Label.Text = app.Blue_VarList_2(2);
+                app.Blue_C_VarValue_2Label.Text = app.Blue_VarList_2(3);
+                app.Blue_C_VarValue_3Label.Text = app.Blue_VarList_2(4);
+                app.Blue_C_VarValue_4Label.Text = app.Blue_VarList_2(5);
+                
+                %Fill in variables randomly into NumValue labels
+                app.Blue_C_NumValue_1Label.Text = num2str(app.Blue_NumList_2(2));
+                app.Blue_C_NumValue_2Label.Text = num2str(app.Blue_NumList_2(3));
+                app.Blue_C_NumValue_3Label.Text = num2str(app.Blue_NumList_2(4));
+                app.Blue_C_NumValue_4Label.Text = num2str(app.Blue_NumList_2(5));
+                
+            elseif (blue_challenge_reynold_type==2)
+                %%Volume Flow Rate Problem
+                %*********SOLVE REYNOLDS NUMBER PROBLEM***********%
+                Re_Volume_Answer= ((app.Blue_NumList_2(2))*((app.Blue_NumList_2(6))/((3.1415926)*(0.25)*(app.Blue_NumList_2(2))*(app.Blue_NumList_2(2))))*(app.Blue_NumList_2(4)))/(app.Blue_NumList_2(5));
+                app.Blue_C_Reynold_Answer= Re_Volume_Answer;
+                
+                %*********FILLING IN INFORMATION TO USER***********%
+                %Fill in variables into blue challenge labels
+                app.Blue_C_VarValue_1Label.Text = app.Blue_VarList_2(2);
+                app.Blue_C_VarValue_2Label.Text = app.Blue_VarList_2(6);
+                app.Blue_C_VarValue_3Label.Text = app.Blue_VarList_2(4);
+                app.Blue_C_VarValue_4Label.Text = app.Blue_VarList_2(5);
+                
+                %Fill in variables randomly into NumValue labels
+                app.Blue_C_NumValue_1Label.Text = num2str(app.Blue_NumList_2(2));
+                app.Blue_C_NumValue_2Label.Text = num2str(app.Blue_NumList_2(6));
+                app.Blue_C_NumValue_3Label.Text = num2str(app.Blue_NumList_2(4));
+                app.Blue_C_NumValue_4Label.Text = num2str(app.Blue_NumList_2(5));
+                
+            elseif (blue_challenge_reynold_type==3)
+                %%Mass Flow Rate Problem
+                %*********SOLVE REYNOLDS NUMBER PROBLEM***********%
+                Re_Mass_Answer= ((app.Blue_NumList_2(7))*4)/(3.1415926*(app.Blue_NumList_2(2))*(app.Blue_NumList_2(5)));
+                app.Blue_C_Reynold_Answer= Re_Mass_Answer;
+                
+                %*********FILLING IN INFORMATION TO USER***********%
+                %Fill in variables into blue challenge labels
+                app.Blue_C_VarValue_1Label.Text = app.Blue_VarList_2(2);
+                app.Blue_C_VarValue_2Label.Text = app.Blue_VarList_2(7);
+                app.Blue_C_VarValue_3Label.Text = app.Blue_VarList_2(5);
+                app.Blue_C_VarValue_4Label.Text = app.Blue_VarList_2(8);
+                
+                %Fill in variables randomly into NumValue labels
+                app.Blue_C_NumValue_1Label.Text = num2str(app.Blue_NumList_2(2));
+                app.Blue_C_NumValue_2Label.Text = num2str(app.Blue_NumList_2(7));
+                app.Blue_C_NumValue_3Label.Text = num2str(app.Blue_NumList_2(5));
+                app.Blue_C_NumValue_4Label.Text = app.Blue_VarList_2(8);
+                
+            end            
+        end
+        
+        %****BLUE CHALLENGE: LAMINAR FLOW FRICTION FACTOR*****%
+        function Blue_Challenge_Select_Laminar(app)
+            
+            %Select variables
+            Blue_Challenge_Select_VarValue(app);
+            
+            %While reynolds number is out of range, run until in range
+            i=0;
+            while (i<100 && ((app.Blue_C_Reynold_Answer)>2100))
+                i = i+1;
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_Challenge_Select_VarValue(app)
+            end
+            
+            %Find Friction Factor
+            laminar_friction= (16)/(app.Blue_C_Reynold_Answer);
+            app.Blue_C_Friction_Answer=round(laminar_friction,3);
+            
+            %%Store value to be checked
+            app.Blue_C_Friction_Answer=round(app.Blue_C_Friction_Answer,3);
+            
+        end
+        
+        %****BLUE CHALLENGE: BLASIUS FLOW FRICTION FACTOR*****%
+        function Blue_Challenge_Select_Blasius(app)
+            %Select variables
+            Blue_Challenge_Select_VarValue(app);
+            
+            %While reynolds number is out of range, run until in range
+            i=0;
+            while (i<100 && ((app.Blue_C_Reynold_Answer)<2100 || (app.Blue_C_Reynold_Answer)>100000))
+                i = i+1;
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_Challenge_Select_VarValue(app)
+            end
+            
+            %Find Friction Factor
+            root=nthroot(app.Blue_C_Reynold_Answer,4);
+            blasius_friction= (0.791)/(root);
+            app.Blue_C_Friction_Answer=round(blasius_friction,3);
+            
+            %%Store value to be checked
+            app.Blue_C_Friction_Answer=round(app.Blue_C_Friction_Answer,3);
+        end
+        
+        %****BLUE CHALLENGE: PRANDTL FLOW FRICTION FACTOR*****%
+        function Blue_Challenge_Select_Prandtl(app)
+            %Select variables
+            Blue_Challenge_Select_VarValue(app);
+            
+            %While reynolds number is out of range, run until in range
+            i=0;
+            while (i<500 && ((app.Blue_C_Reynold_Answer)<100000 || (app.Blue_C_Reynold_Answer)>4000000))
+                i = i+1;
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_Challenge_Select_VarValue(app)
+            end
+            
+            %Find Friction Factor, initalize blasius, run 10 iterations
+            
+            root=nthroot(app.Blue_C_Reynold_Answer,4);
+            prandtl_friction= (0.791)/(root);
+            
+            j=0;
+            while(j<10)
+                j=j+1;
+                prandtl_friction=(((1)/(4.0*(log10((app.Blue_C_Reynold_Answer*(sqrt(prandtl_friction)))))-0.4))^2);
+            end    
+            
+            %%Store value to be checked
+            app.Blue_C_Friction_Answer=round(prandtl_friction,3);
+            
+        end
+        
+
+        %{****************************************************************************************************************}%
+    %Check if red answers are correct
+        function Red_Check(app)
+        %Check to see if all answers are correct
+            if (app.Box1Correct==1&&app.Box2Correct==1&&app.Box3Correct==1&&app.Box4Correct==1)
+                %Set incorrect counter to 0
+                app.red_i=0;
+                %Make check mark appear
+                app.CheckMark.Visible = 1;
+                %Wait
+                pause(1)
+                %Make Check disappear
+                app.CheckMark.Visible =0;
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.ListBox_1.Value ={};
+                app.ListBox_2.Value ={};
+                app.ListBox_3.Value ={};
+                app.ListBox_4.Value ={};
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+                
+            elseif((app.red_i==0)&& (app.Box1Correct==2 || app.Box2Correct==2 || app.Box3Correct==2 || app.Box4Correct==2))
+                %Set incorrect counter to 1
+                app.red_i=1;
+                %Show Try again
+                app.TryAgain_Red.Visible = 'on';
+                pause(1)
+                app.TryAgain_Red.Visible = 'off';
+                
+                %Deselect Values
+                app.ListBox_1.Value ={};
+                app.ListBox_2.Value ={};
+                app.ListBox_3.Value ={};
+                app.ListBox_4.Value ={};
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+            
+            elseif((app.red_i==1)&&(app.Box1Correct==2 || app.Box2Correct==2 || app.Box3Correct==2 || app.Box4Correct==2))
+                %Show Wrong Answer
+                app.UnCheckMark_Red.Visible = 'on';
+                pause(1)
+                app.UnCheckMark_Red.Visible = 'off';
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.ListBox_1.Value ={};
+                app.ListBox_2.Value ={};
+                app.ListBox_3.Value ={};
+                app.ListBox_4.Value ={};
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+                
+                %Reset incorrect counter to 1
+                app.red_i=0;
+            end
+        end
+        
+        %Check if red challenge answers are correct
+        function Red_C_Check(app)
+        %Check to see if all answers are correct
+            if (app.Box1Correct==1&&app.Box2Correct==1&&app.Box3Correct==1&&app.Box4Correct==1)
+                %Set incorrect counter to 0
+                app.red_i=0;
+                %Make check mark appear
+                app.CheckMarkRC.Visible = 1;
+                %Wait
+                pause(1)
+                %Make Check disappear
+                app.CheckMarkRC.Visible =0;
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.RCAns1.Value ='';
+                app.RCAns2.Value ='';
+                app.RCAns3.Value ='';
+                app.RCAns4.Value ='';
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+                
+            elseif((app.red_i==0)&& (app.Box1Correct==2 || app.Box2Correct==2 || app.Box3Correct==2 || app.Box4Correct==2))
+                %Set incorrect counter to 1
+                app.red_i=1;
+                %Show Try again
+                app.TryAgain_C_Red.Visible = 'on';
+                pause(1)
+                app.TryAgain_C_Red.Visible = 'off';
+                
+                %Deselect Values
+                app.RCAns1.Value ='';
+                app.RCAns2.Value ='';
+                app.RCAns3.Value ='';
+                app.RCAns4.Value ='';
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+            
+            elseif((app.red_i==1)&&(app.Box1Correct==2 || app.Box2Correct==2 || app.Box3Correct==2 || app.Box4Correct==2))
+                %Show Wrong Answer
+                app.UnCheckMark_C_Red.Visible = 'on';
+                pause(1)
+                app.UnCheckMark_C_Red.Visible = 'off';
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.RCAns1.Value ='';
+                app.RCAns2.Value ='';
+                app.RCAns3.Value ='';
+                app.RCAns4.Value ='';
+                
+                app.Box1Correct=0;
+                app.Box2Correct=0;
+                app.Box3Correct=0;
+                app.Box4Correct=0;
+                
+                %Reset incorrect counter to 1
+                app.red_i=0;
+            end
+        end
+        
+        %Check if yellow challenge answers are correct
+        function Yellow_C_Check(app)
+        %Check to see if all answers are correct
+            if (app.Box5Correct==1&&app.Box6Correct==1&&app.Box7Correct==1&&app.Box8Correct==1)
+                %Set incorrect counter to 0
+                app.yellow_i=0;
+                %Make check mark appear
+                app.CheckMark_2.Visible = 1;
+                %Wait
+                pause(1)
+                %Make Check disappear
+                app.CheckMark_2.Visible =0;
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.ListBox_5.Value ={};
+                app.ListBox_6.Value ={};
+                app.ListBox_7.Value ={};
+                app.ListBox_8.Value ={};
+                
+                app.Box5Correct=0;
+                app.Box6Correct=0;
+                app.Box7Correct=0;
+                app.Box8Correct=0;
+                
+            elseif((app.yellow_i==0)&& (app.Box5Correct==2 || app.Box6Correct==2 || app.Box7Correct==2 || app.Box8Correct==2))
+                %Set incorrect counter to 1
+                app.yellow_i=1;
+                %Show Try again
+                app.TryAgain_C_Yellow.Visible = 'on';
+                pause(1)
+                app.TryAgain_C_Yellow.Visible = 'off';
+                
+               %Deselect Values
+                app.ListBox_5.Value ={};
+                app.ListBox_6.Value ={};
+                app.ListBox_7.Value ={};
+                app.ListBox_8.Value ={};
+                
+                app.Box5Correct=0;
+                app.Box6Correct=0;
+                app.Box7Correct=0;
+                app.Box8Correct=0;
+            
+            elseif((app.yellow_i==1)&& (app.Box5Correct==2 || app.Box6Correct==2 || app.Box7Correct==2 || app.Box8Correct==2))
+                %Show Wrong Answer
+                app.UnCheckMark_C_Yellow.Visible = 'on';
+                pause(1)
+                app.UnCheckMark_C_Yellow.Visible = 'off';
+                
+                %Bring user to main page
+                app.TabGroup.SelectedTab = app.MainPage;
+                
+                %Deselect Values
+                app.ListBox_5.Value ={};
+                app.ListBox_6.Value ={};
+                app.ListBox_7.Value ={};
+                app.ListBox_8.Value ={};
+                
+                app.Box5Correct=0;
+                app.Box6Correct=0;
+                app.Box7Correct=0;
+                app.Box8Correct=0;
+                
+                %Reset incorrect counter
+                app.yellow_i=0;
+            end
+        end
+    end
+    
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+            %app.RedTab.Parent=[];              Disables Tabs but cannot be selected when disabled
+            %app.RedChallengeTab.Parent=[];     ^^
+            
+            %Stuff for red
+            app.sizetemp = size(app.VocabList,2);
+            for i = 1:app.sizetemp
+                app.VocabListNoSpace(i) = regexprep(app.VocabList(i), '\s+', '');
+            end
+            app.VocabListNoSpace = lower(app.VocabListNoSpace);
+           
+            
+            %Containers for green UI infrastructure
+            app.handleArrayGroup1 = [app.Layer1Label,app.Layer1Height,app.Layer1Visc,app.Layer1HeightLabel,app.Layer1ViscLabel];
+            app.handleArrayGroup2 = [app.Layer2Label,app.Layer2Height,app.Layer2Visc,app.Layer2HeightLabel,app.Layer2ViscLabel];
+            app.handleArrayGroup3 = [app.Layer3Label,app.Layer3Height,app.Layer3Visc,app.Layer3HeightLabel,app.Layer3ViscLabel];
+            app.handleArrayGroup4 = [app.Layer4Label,app.Layer4Height,app.Layer4Visc,app.Layer4HeightLabel,app.Layer4ViscLabel];
+            
+            %Initialize to hidden elements in green tab
+            set(app.handleArrayGroup1, 'Visible', 'off');
+            set(app.handleArrayGroup2, 'Visible', 'off');
+            set(app.handleArrayGroup3, 'Visible', 'off');
+            set(app.handleArrayGroup4, 'Visible', 'off');
+            
+            %Yellow things
+            app.Yellowsizetemp = size(app.YellowVocabList,2);
+            
+            
+        end
+
+        % Button pushed function: RedButton
+        function RedButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.RedTab;
+            VocabRand(app);
+        end
+
+        % Button pushed function: GreenButton
+        function GreenButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.GreenTab;
+            
+            
+            app.BtmV.Visible = 'on';
+            app.BtmV.Value = 0;
+            
+            app.BottomPlateVeloictyLabel.Visible = 'on';
+            
+            app.TopV.Visible ='on';
+            app.TopV.Value =0;
+            
+            app.TopPlateVeloictyEditFieldLabel.Visible = 'on';
+            
+            app.GreenPressure.Visible ='off';
+            app.GreenPressure.Value =0;
+            
+            app.PressureEditFieldLabel.Visible = 'off';
+            
+            %Disable Velocities for rand
+            app.randBotVel = round(25*rand);
+            app.randTopVel = round(25*rand);
+            
+            %Disable Pressure Gradient
+            app.randGreenPressure = 0;
+            
+            plotRand(app);
+            
+        end
+
+        % Button pushed function: BlueButton
+        function BlueButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.BlueTab;
+            
+            blue_question_type=round(1+rand);
+            if (blue_question_type==1)
+                app.SurfTen_Blue.Visible = 'on';
+                app.ReyNum_Blue.Visible = 'off';
+                Blue_NumValue_Random_Select_Surface(app);
+                Blue_VarValue_Random_Select_Surface(app);
+            elseif (blue_question_type==2)
+                app.ReyNum_Blue.Visible = 'on';
+                app.SurfTen_Blue.Visible = 'off';
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_VarValue_Random_Select_Reynold(app);
+            end
+        end
+
+        % Button pushed function: YellowButton
+        function YellowButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.YellowTab;
+            
+            %Case 1: ANNULUS
+            %Case 2: PIPE
+            %Case 3: PLATES
+            %Case 4: GAS PLATE
+            
+            SourceList = ["Annulus.png" , "Pipe.png" ,"Plates.png","GasPlate.png" ];
+            SS = size(SourceList);
+            disp(SS)
+            RR=randperm(SS(2));
+            app.YellowCaseNum = RR(1);
+            app.YellowWindow.ImageSource = SourceList(app.YellowCaseNum);
+        end
+
+        % Button pushed function: RedChallengeButton
+        function RedChallengeButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.RedChallengeTab;
+            ChalVocabRand(app);
+        end
+
+        % Button pushed function: GreenChallengeButton
+        function GreenChallengeButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.GreenTab;
+            
+            app.BtmV.Visible = 'on';
+            app.BtmV.Value = 0;
+            
+            app.BottomPlateVeloictyLabel.Visible = 'on';
+            
+            app.TopV.Visible ='on';
+            app.TopV.Value =0;
+            
+            app.TopPlateVeloictyEditFieldLabel.Visible = 'on';
+            
+            app.GreenPressure.Visible ='on';
+            app.GreenPressure.Value =0;
+            
+            app.PressureEditFieldLabel.Visible = 'on';
+            
+            %Randomize Velocity for top and bottom
+            app.randBotVel = round(25*rand);
+            app.randTopVel = round(25*rand);
+            
+            %Randomize Pressure Gradient
+            app.randGreenPressure = round(20000+10000*rand);
+            
+            plotRand(app);
+            
+            
+        end
+
+        % Button pushed function: BlueChallengeButton
+        function BlueChallengeButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.BlueChallengeTab;
+            
+            %%Randomly generate values for different reynolds types
+            blue_challenge_flow_type=1+round(rand)+round(rand);
+            if (blue_challenge_flow_type==1)
+                %%Laminar Problem
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_Challenge_Select_Laminar(app);
+            
+            elseif (blue_challenge_flow_type==2)
+                %%Blasius Problem
+                Blue_NumValue_Random_Select_Reynold(app);
+                Blue_Challenge_Select_Blasius(app);
+            
+            elseif (blue_challenge_flow_type==3)
+                %%Prandtl Problem
+               Blue_NumValue_Random_Select_Reynold(app);
+               Blue_Challenge_Select_Prandtl(app);
+            end
+            
+             %%******Display tested code********%%
+            app.test_C_reynoldLabel.Text = num2str(app.Blue_C_Reynold_Answer);
+            app.test_C_frictionLabel.Text = num2str(app.Blue_C_Friction_Answer);
+        end
+
+        % Button pushed function: YellowChallengeButton
+        function YellowChallengeButtonPushed(app, event)
+            app.TabGroup.SelectedTab = app.YellowChallengeTab;
+            YellowChalRand(app);
+        end
+
+        % Value changed function: ListBox_1
+        function ListBox_1ValueChanged(app, event)
+            value = app.ListBox_1.Value;
+            %If the indices of the answers match change correct to  true
+            if find(contains(app.DefList,value)) == find(contains(app.VocabList,app.Label1.Text))
+                app.Box1Correct=1;
+            else
+                app.Box1Correct=2;
+            end
+    
+            %Check to see if all answers are correct
+            app.Red_Check
+        end
+
+        % Value changed function: ListBox_2
+        function ListBox_2ValueChanged(app, event)
+            value = app.ListBox_2.Value;
+            if find(contains(app.DefList,value)) == find(contains(app.VocabList,app.Label2.Text))
+                app.Box2Correct=1;
+            else
+                app.Box2Correct=2;
+            end
+    
+            %Check to see if all answers are correct
+            app.Red_Check
+        end
+
+        % Value changed function: ListBox_3
+        function ListBox_3ValueChanged(app, event)
+            value = app.ListBox_3.Value;
+            if find(contains(app.DefList,value)) == find(contains(app.VocabList,app.Label3.Text))
+                app.Box3Correct=1;
+            else
+                app.Box3Correct=2;
+            end
+    
+            %Check to see if all answers are correct
+            app.Red_Check
+        end
+
+        % Value changed function: ListBox_4
+        function ListBox_4ValueChanged(app, event)
+            value = app.ListBox_4.Value;
+            if find(contains(app.DefList,value)) == find(contains(app.VocabList,app.Label4.Text))
+                app.Box4Correct=1;
+            else
+                app.Box4Correct=2;
+            end
+    
+            %Check to see if all answers are correct
+            app.Red_Check
+        end
+
+        % Value changed function: RCAns1
+        function RCAns1ValueChanged(app, event)
+            value = app.RCAns1.Value;
+            value = lower(value(~isspace(value)));
+            if find(contains(app.VocabListNoSpace,value)) == find(contains(app.DefList,app.RCDef1.Text))
+                app.Box1Correct=1;
+            else
+                app.Box1Correct=2;
+            end
+            
+            %Check to see if all answers are correct
+            app.Red_C_Check
+        end
+
+        % Value changed function: RCAns2
+        function RCAns2ValueChanged(app, event)
+            value = app.RCAns2.Value;
+            value = lower(value(~isspace(value)));
+            if find(contains(app.VocabListNoSpace,value)) == find(contains(app.DefList,app.RCDef2.Text))
+                app.Box2Correct=1;
+            else
+                app.Box2Correct=2;
+            end
+            
+            %Check to see if all answers are correct
+            app.Red_C_Check
+        end
+
+        % Value changed function: RCAns3
+        function RCAns3ValueChanged(app, event)
+            value = app.RCAns3.Value;
+            value = lower(value(~isspace(value)));
+            if find(contains(app.VocabListNoSpace,value)) == find(contains(app.DefList,app.RCDef3.Text))
+                app.Box3Correct=1;
+            else
+                app.Box3Correct=2;
+            end
+            
+            %Check to see if all answers are correct
+            app.Red_C_Check
+        end
+
+        % Value changed function: RCAns4
+        function RCAns4ValueChanged(app, event)
+            value = app.RCAns4.Value;
+            value = lower(value(~isspace(value)));
+            if find(contains(app.VocabListNoSpace,value)) == find(contains(app.DefList,app.RCDef4.Text))
+                app.Box4Correct=1;
+            else
+                app.Box4Correct=2;
+            end
+            
+            %Check to see if all answers are correct
+            app.Red_C_Check
+        end
+
+        % Value changed function: LayerCount
+        function LayerCountValueChanged(app, event)
+            value = app.LayerCount.Value;
+            value =  str2double(value);
+            app.userLayerNum = value;
+            
+            %cla(app.Plot1);
+            set(app.handleArrayGroup1, 'Visible', 'off');
+            set(app.handleArrayGroup2, 'Visible', 'off');
+            set(app.handleArrayGroup3, 'Visible', 'off');
+            set(app.handleArrayGroup4, 'Visible', 'off');
+            
+            if value == 4
+                rectangle(app.Plot1, 'Position', [0,0,50,80/4], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot1, 'Position', [0,20,50,80/4], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot1, 'Position', [0,40,50,80/4], 'FaceColor', [0 0 1]);
+                rectangle(app.Plot1, 'Position', [0,60,50,80/4], 'FaceColor', [0.5 0.5 0]);
+                
+                set(app.handleArrayGroup1, 'Visible', 'on');
+                set(app.handleArrayGroup2, 'Visible', 'on');
+                set(app.handleArrayGroup3, 'Visible', 'on');
+                set(app.handleArrayGroup4, 'Visible', 'on');
+            end
+            if value == 3
+                rectangle(app.Plot1, 'Position', [0,0,50,80/3], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot1, 'Position', [0,80/3,50,80/3], 'FaceColor', [0 1 0]);
+                rectangle(app.Plot1, 'Position', [0,2*80/3,50,80/3], 'FaceColor', [0 0 1]);
+                
+                set(app.handleArrayGroup1, 'Visible', 'on');
+                set(app.handleArrayGroup2, 'Visible', 'on');
+                set(app.handleArrayGroup3, 'Visible', 'on');
+                
+                app.Layer4Height.Value=0;
+                app.Layer4Visc.Value=1;
+                
+            end
+            if value == 2
+                rectangle(app.Plot1, 'Position', [0,0,50,80/2], 'FaceColor', [1 0 0]);
+                rectangle(app.Plot1, 'Position', [0,80/2,50,80/2], 'FaceColor', [0 1 0]);
+                
+                set(app.handleArrayGroup1, 'Visible', 'on');
+                set(app.handleArrayGroup2, 'Visible', 'on');
+                
+                app.Layer4Height.Value=0;
+                app.Layer4Visc.Value=1;
+                
+                app.Layer3Height.Value=0;
+                app.Layer3Visc.Value=1;
+            end
+            if value == 1
+                rectangle(app.Plot1, 'Position', [0,0,50,80], 'FaceColor', [1 0 0]);
+                
+                set(app.handleArrayGroup1, 'Visible', 'on');
+                
+                app.Layer4Height.Value=0;
+                app.Layer4Visc.Value=1;
+                
+                app.Layer3Height.Value=0;
+                app.Layer3Visc.Value=1;
+                
+                app.Layer2Height.Value=0;
+                app.Layer2Visc.Value=1;
+                
+                app.Layer1Height.Value=80;
+                
+                
+            end
+            
+        end
+
+        % Value changed function: Layer1Height
+        function Layer1HeightValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            if str2double(app.LayerCount.Value) == 1
+                app.Layer1Height.Value = 80;
+                
+                regenPlot(app);
+                elseif str2double(app.LayerCount.Value) == 2
+                    sumval = app.Layer1Height.Value + app.Layer2Height.Value -80;
+                    app.Layer2Height.Value = app.Layer2Height.Value - sumval;
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 3
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value -80;
+                        
+                        layer2adj= app.Layer2Height.Value - sumval/2;
+                        layer3adj = app.Layer3Height.Value - sumval/2;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 4
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value +app.Layer4Height.Value -80;
+                        layer2adj = app.Layer2Height.Value - sumval/3;
+                        layer3adj = app.Layer3Height.Value - sumval/3;
+                        layer4adj = app.Layer4Height.Value - sumval/3;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                        
+                        if layer4adj < 0
+                            app.Layer4Height.Value = 0;
+                        else
+                            app.Layer4Height.Value = layer4adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+            end
+            
+            greenCheck(app)
+            
+        end
+
+        % Value changed function: Layer2Height
+        function Layer2HeightValueChanged(app, event)
+            
+            %cla(app.Plot1)
+            
+            if str2double(app.LayerCount.Value) == 1
+                app.Layer1Height.Value = 80;
+                elseif str2double(app.LayerCount.Value) == 2
+                    sumval = app.Layer1Height.Value + app.Layer2Height.Value -80;
+                    app.Layer1Height.Value = app.Layer1Height.Value - sumval;
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 3
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value -80;
+                        
+                        layer1adj= app.Layer1Height.Value - sumval/2;
+                        layer3adj = app.Layer3Height.Value - sumval/2;
+                        
+                        if layer1adj < 0
+                            app.Layer1Height.Value = 0;
+                        else
+                            app.Layer1Height.Value = layer1adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 4
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value +app.Layer4Height.Value -80;
+                        layer1adj = app.Layer1Height.Value - sumval/3;
+                        layer3adj = app.Layer3Height.Value - sumval/3;
+                        layer4adj = app.Layer4Height.Value - sumval/3;
+                        
+                        if layer1adj < 0
+                            app.Layer1Height.Value = 0;
+                        else
+                            app.Layer1Height.Value = layer1adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                        
+                        if layer4adj < 0
+                            app.Layer4Height.Value = 0;
+                        else
+                            app.Layer4Height.Value = layer4adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+            end
+            
+            greenCheck(app)
+            
+        end
+
+        % Value changed function: Layer3Height
+        function Layer3HeightValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            if str2double(app.LayerCount.Value) == 1
+                app.Layer1Height.Value = 80;
+                elseif str2double(app.LayerCount.Value) == 2
+                    sumval = app.Layer1Height.Value + app.Layer2Height.Value -80;
+                    app.Layer2Height.Value = app.Layer2Height.Value - sumval;
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 3
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value -80;
+                        
+                        layer2adj= app.Layer2Height.Value - sumval/2;
+                        layer1adj = app.Layer1Height.Value - sumval/2;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer1adj < 0
+                            app.Layer1Height.Value = 0;
+                        else
+                            app.Layer1Height.Value = layer1adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 4
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value +app.Layer4Height.Value -80;
+                        layer2adj = app.Layer2Height.Value - sumval/3;
+                        layer1adj = app.Layer1Height.Value - sumval/3;
+                        layer4adj = app.Layer4Height.Value - sumval/3;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer1adj < 0
+                            app.Layer1Height.Value = 0;
+                        else
+                            app.Layer1Height.Value = layer1adj;
+                        end
+                        
+                        if layer4adj < 0
+                            app.Layer4Height.Value = 0;
+                        else
+                            app.Layer4Height.Value = layer4adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+            end
+            
+            greenCheck(app)
+            
+        end
+
+        % Value changed function: Layer4Height
+        function Layer4HeightValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            if str2double(app.LayerCount.Value) == 1
+                app.Layer1Height.Value = 80;
+                elseif str2double(app.LayerCount.Value) == 2
+                    sumval = app.Layer1Height.Value + app.Layer2Height.Value -80;
+                    app.Layer2Height.Value = app.Layer2Height.Value - sumval;
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 3
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value -80;
+                        
+                        layer2adj= app.Layer2Height.Value - sumval/2;
+                        layer3adj = app.Layer3Height.Value - sumval/2;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+                elseif str2double(app.LayerCount.Value) == 4
+                    sumval =1;
+                    while sumval < -0.005 || sumval > 0.005
+                        sumval = app.Layer1Height.Value + app.Layer2Height.Value + app.Layer3Height.Value +app.Layer4Height.Value -80;
+                        layer2adj = app.Layer2Height.Value - sumval/3;
+                        layer3adj = app.Layer3Height.Value - sumval/3;
+                        layer1adj = app.Layer1Height.Value - sumval/3;
+                        
+                        if layer2adj < 0
+                            app.Layer2Height.Value = 0;
+                        else
+                            app.Layer2Height.Value = layer2adj;
+                        end
+                        
+                        if layer3adj < 0
+                            app.Layer3Height.Value = 0;
+                        else
+                            app.Layer3Height.Value = layer3adj;
+                        end
+                        
+                        if layer1adj < 0
+                            app.Layer1Height.Value = 0;
+                        else
+                            app.Layer1Height.Value = layer1adj;
+                        end
+                    end
+                    
+                    regenPlot(app)
+                    
+            end
+            
+            greenCheck(app)
+            
+        end
+
+        % Button pushed function: ClearPlotButton
+        function ClearPlotButtonPushed(app, event)
+            app.Label9.Text = int2str(app.randBotVel);
+        end
+
+        % Value changed function: Layer1Visc
+        function Layer1ViscValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            
+            greenCheck(app)
+            regenPlot(app)
+        end
+
+        % Value changed function: Layer2Visc
+        function Layer2ViscValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            greenCheck(app)
+            regenPlot(app)
+            
+        end
+
+        % Value changed function: Layer3Visc
+        function Layer3ViscValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            greenCheck(app)
+            regenPlot(app)
+            
+        end
+
+        % Value changed function: Layer4Visc
+        function Layer4ViscValueChanged(app, event)
+
+            %cla(app.Plot1)
+            
+            greenCheck(app)
+            regenPlot(app)
+            
+        end
+
+        % Value changed function: BoundednessCheckBox
+        function BoundednessCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: DFlowCheckBox
+        function DFlowCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: RectilinearCheckBox
+        function RectilinearCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NoEndEffectsCheckBox
+        function NoEndEffectsCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: AxisofSymmetryCheckBox
+        function AxisofSymmetryCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NoGravityEffectsCheckBox
+        function NoGravityEffectsCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NoPressureGradientCheckBox
+        function NoPressureGradientCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NewtonianCheckBox
+        function NewtonianCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: IncompressibleCheckBox
+        function IncompressibleCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: StressatABoundaryCheckBox
+        function StressatABoundaryCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NoSlipMoreThan2BoundariesCheckBox
+        function NoSlipMoreThan2BoundariesCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: NoSlipatExactlyOneBoundaryCheckBox
+        function NoSlipatExactlyOneBoundaryCheckBoxValueChanged(app, event)
+
+            %yellowCheck(app)
+        end
+
+        % Value changed function: ListBox_5
+        function ListBox_5ValueChanged(app, event)
+            value = app.ListBox_5.Value;
+            %If the indices of the answers match change correct to  true
+            if find(contains(app.YellowDefList,value)) == find(contains(app.YellowVocabList,app.Label1_2.Text))
+                app.Box5Correct=1;
+            else
+                app.Box5Correct=2;
+            end
+
+            %Check to see if all answers are correct
+            app.Yellow_C_Check
+        end
+
+        % Value changed function: ListBox_6
+        function ListBox_6ValueChanged(app, event)
+            value = app.ListBox_6.Value;
+            %If the indices of the answers match change correct to  true
+            if find(contains(app.YellowDefList,value)) == find(contains(app.YellowVocabList,app.Label2_2.Text))
+                app.Box6Correct=1;
+            else
+                app.Box6Correct=2;
+            end
+
+            %Check to see if all answers are correct
+            app.Yellow_C_Check
+        end
+
+        % Value changed function: ListBox_7
+        function ListBox_7ValueChanged(app, event)
+            value = app.ListBox_7.Value;
+            %If the indices of the answers match change correct to  true
+            if find(contains(app.YellowDefList,value)) == find(contains(app.YellowVocabList,app.Label3_2.Text))
+                app.Box7Correct=1;
+            else
+                app.Box7Correct=2;
+            end
+
+            %Check to see if all answers are correct
+            app.Yellow_C_Check
+        end
+
+        % Value changed function: ListBox_8
+        function ListBox_8ValueChanged(app, event)
+            value = app.ListBox_8.Value;
+            %If the indices of the answers match change correct to  true
+            if find(contains(app.YellowDefList,value)) == find(contains(app.YellowVocabList,app.Label4_2.Text))
+                app.Box8Correct=1;
+            else
+                app.Box8Correct=2;
+            end
+
+            %Check to see if all answers are correct
+            app.Yellow_C_Check
+        end
+
+        % Value changed function: Blue_User_Input
+        function Blue_User_InputValueChanged(app, event)
+            blue_value = app.Blue_User_Input.Value;
+            if (blue_value>=((0.95)*(app.Blue_Answer)) && blue_value<=((1.05)*(app.Blue_Answer)))
+                app.CheckMark_Blue.Visible = 'on';
+                pause(1)
+                app.CheckMark_Blue.Visible = 'off';
+                app.TabGroup.SelectedTab = app.MainPage;
+                app.Blue_User_Input.Value=0;
+                app.blue_i=0;
+            elseif((app.blue_i==0) && ((blue_value<=((0.95)*(app.Blue_Answer)) || blue_value>=((1.05)*(app.Blue_Answer)))))
+                app.blue_i=1;
+                app.TryAgain_Blue.Visible = 'on';
+                pause(1)
+                app.TryAgain_Blue.Visible = 'off';
+            elseif((app.blue_i==1) && ((blue_value<=((0.95)*(app.Blue_Answer)) || blue_value>=((1.05)*(app.Blue_Answer)))))
+                app.UnCheckMark_Blue.Visible = 'on';
+                pause(1)
+                app.UnCheckMark_Blue.Visible = 'off';
+                app.TabGroup.SelectedTab = app.MainPage;
+                app.Blue_User_Input.Value=0;
+                app.blue_i=0;
+            end
+        end
+
+        % Value changed function: Blue_C_User_Input
+        function Blue_C_User_InputValueChanged(app, event)
+            blue_C_value = app.Blue_C_User_Input.Value;
+            if (blue_C_value>=((0.95)*(app.Blue_C_Friction_Answer)) && blue_C_value<=((1.05)*(app.Blue_C_Friction_Answer)))
+                app.CheckMark_C_Blue.Visible = 'on';
+                pause(1)
+                app.CheckMark_C_Blue.Visible = 'off';
+                app.TabGroup.SelectedTab = app.MainPage;
+                app.Blue_C_User_Input.Value=0;
+                app.blue_i=0;
+            elseif((app.blue_i==0) && (blue_C_value<=((0.95)*(app.Blue_C_Friction_Answer)) || blue_C_value>=((1.05)*(app.Blue_C_Friction_Answer))))
+                app.blue_i=1;
+                app.TryAgain_C_Blue.Visible = 'on';
+                pause(1)
+                app.TryAgain_C_Blue.Visible = 'off';
+            elseif((app.blue_i==1) && (blue_C_value<=((0.95)*(app.Blue_C_Friction_Answer)) || blue_C_value>=((1.05)*(app.Blue_C_Friction_Answer))))
+                app.UnCheckMark_C_Blue.Visible = 'on';
+                pause(1)
+                app.UnCheckMark_C_Blue.Visible = 'off';
+                app.TabGroup.SelectedTab = app.MainPage;
+                app.Blue_User_Input.Value=0;
+                app.blue_i=0;
+            end
+        end
+
+        % Value changed function: BtmV
+        function BtmVValueChanged(app, event)
+            value = app.BtmV.Value;
+            
+            %cla(app.Plot1)
+            
+            greenCheck(app);
+            
+            regenPlot(app);
+        end
+
+        % Value changed function: TopV
+        function TopVValueChanged(app, event)
+            value = app.TopV.Value;
+            
+            %cla(app.Plot1)
+            
+            greenCheck(app);
+            
+            regenPlot(app);
+        end
+
+        % Value changed function: GreenPressure
+        function GreenPressureValueChanged(app, event)
+            %value = app.GreenPressure.Value;
+            
+            %cla(app.Plot1)
+            
+            greenCheck(app);
+            
+            regenPlot(app);
+        end
+
+        % Button pushed function: CheckAnswerButton
+        function CheckAnswerButtonPushed(app, event)
+            yellowCheck(app);
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Position = [100 100 640 480];
+            app.UIFigure.Name = 'UI Figure';
+
+            % Create TabGroup
+            app.TabGroup = uitabgroup(app.UIFigure);
+            app.TabGroup.Position = [1 1 640 480];
+
+            % Create MainPage
+            app.MainPage = uitab(app.TabGroup);
+            app.MainPage.Title = 'MainPage';
+
+            % Create RedButton
+            app.RedButton = uibutton(app.MainPage, 'push');
+            app.RedButton.ButtonPushedFcn = createCallbackFcn(app, @RedButtonPushed, true);
+            app.RedButton.BackgroundColor = [0.9608 0.7294 0.7294];
+            app.RedButton.Position = [58 341 100 22];
+            app.RedButton.Text = 'Red';
+
+            % Create GreenButton
+            app.GreenButton = uibutton(app.MainPage, 'push');
+            app.GreenButton.ButtonPushedFcn = createCallbackFcn(app, @GreenButtonPushed, true);
+            app.GreenButton.BackgroundColor = [0.7216 0.9882 0.6941];
+            app.GreenButton.Position = [205 341 100 22];
+            app.GreenButton.Text = 'Green';
+
+            % Create BlueButton
+            app.BlueButton = uibutton(app.MainPage, 'push');
+            app.BlueButton.ButtonPushedFcn = createCallbackFcn(app, @BlueButtonPushed, true);
+            app.BlueButton.BackgroundColor = [0.7216 0.7647 0.9882];
+            app.BlueButton.Position = [359 341 100 22];
+            app.BlueButton.Text = 'Blue';
+
+            % Create RedChallengeButton
+            app.RedChallengeButton = uibutton(app.MainPage, 'push');
+            app.RedChallengeButton.ButtonPushedFcn = createCallbackFcn(app, @RedChallengeButtonPushed, true);
+            app.RedChallengeButton.BackgroundColor = [0.9608 0.7294 0.7294];
+            app.RedChallengeButton.Position = [58 233 100 22];
+            app.RedChallengeButton.Text = {'Red Challenge'; ''};
+
+            % Create GreenChallengeButton
+            app.GreenChallengeButton = uibutton(app.MainPage, 'push');
+            app.GreenChallengeButton.ButtonPushedFcn = createCallbackFcn(app, @GreenChallengeButtonPushed, true);
+            app.GreenChallengeButton.BackgroundColor = [0.7216 0.9882 0.6941];
+            app.GreenChallengeButton.Position = [202 233 106 22];
+            app.GreenChallengeButton.Text = 'Green Challenge';
+
+            % Create BlueChallengeButton
+            app.BlueChallengeButton = uibutton(app.MainPage, 'push');
+            app.BlueChallengeButton.ButtonPushedFcn = createCallbackFcn(app, @BlueChallengeButtonPushed, true);
+            app.BlueChallengeButton.BackgroundColor = [0.7216 0.7647 0.9882];
+            app.BlueChallengeButton.Position = [359 233 100 22];
+            app.BlueChallengeButton.Text = 'Blue Challenge';
+
+            % Create YellowButton
+            app.YellowButton = uibutton(app.MainPage, 'push');
+            app.YellowButton.ButtonPushedFcn = createCallbackFcn(app, @YellowButtonPushed, true);
+            app.YellowButton.BackgroundColor = [0.9765 0.9882 0.7216];
+            app.YellowButton.Position = [497 341 100 22];
+            app.YellowButton.Text = 'Yellow';
+
+            % Create YellowChallengeButton
+            app.YellowChallengeButton = uibutton(app.MainPage, 'push');
+            app.YellowChallengeButton.ButtonPushedFcn = createCallbackFcn(app, @YellowChallengeButtonPushed, true);
+            app.YellowChallengeButton.BackgroundColor = [0.9765 0.9882 0.7216];
+            app.YellowChallengeButton.Position = [493.5 233 107 22];
+            app.YellowChallengeButton.Text = 'Yellow Challenge';
+
+            % Create RedTab
+            app.RedTab = uitab(app.TabGroup);
+            app.RedTab.Title = 'Red';
+            app.RedTab.BackgroundColor = [0.9686 0.5098 0.5098];
+
+            % Create Label1
+            app.Label1 = uilabel(app.RedTab);
+            app.Label1.Position = [26 364 125 22];
+            app.Label1.Text = 'Label1';
+
+            % Create Label2
+            app.Label2 = uilabel(app.RedTab);
+            app.Label2.Position = [26 272 125 22];
+            app.Label2.Text = 'Label2';
+
+            % Create Label3
+            app.Label3 = uilabel(app.RedTab);
+            app.Label3.Position = [26 174 125 22];
+            app.Label3.Text = 'Label3';
+
+            % Create Label4
+            app.Label4 = uilabel(app.RedTab);
+            app.Label4.Position = [26 80 125 22];
+            app.Label4.Text = 'Label4';
+
+            % Create ListBox_1
+            app.ListBox_1 = uilistbox(app.RedTab);
+            app.ListBox_1.ValueChangedFcn = createCallbackFcn(app, @ListBox_1ValueChanged, true);
+            app.ListBox_1.Position = [221 338 393 74];
+            app.ListBox_1.Value = {};
+
+            % Create ListBox_2
+            app.ListBox_2 = uilistbox(app.RedTab);
+            app.ListBox_2.ValueChangedFcn = createCallbackFcn(app, @ListBox_2ValueChanged, true);
+            app.ListBox_2.Position = [221 246 393 74];
+            app.ListBox_2.Value = {};
+
+            % Create ListBox_3
+            app.ListBox_3 = uilistbox(app.RedTab);
+            app.ListBox_3.ValueChangedFcn = createCallbackFcn(app, @ListBox_3ValueChanged, true);
+            app.ListBox_3.Position = [221 148 393 74];
+            app.ListBox_3.Value = {};
+
+            % Create ListBox_4
+            app.ListBox_4 = uilistbox(app.RedTab);
+            app.ListBox_4.ValueChangedFcn = createCallbackFcn(app, @ListBox_4ValueChanged, true);
+            app.ListBox_4.Position = [221 54 393 74];
+            app.ListBox_4.Value = {};
+
+            % Create CheckMark
+            app.CheckMark = uiimage(app.RedTab);
+            app.CheckMark.Visible = 'off';
+            app.CheckMark.Position = [162 101 279 265];
+            app.CheckMark.ImageSource = 'CheckMark.png';
+
+            % Create UnCheckMark_Red
+            app.UnCheckMark_Red = uiimage(app.RedTab);
+            app.UnCheckMark_Red.Visible = 'off';
+            app.UnCheckMark_Red.Position = [202 134 217 186];
+            app.UnCheckMark_Red.ImageSource = 'UnCheckMark.png';
+
+            % Create TryAgain_Red
+            app.TryAgain_Red = uiimage(app.RedTab);
+            app.TryAgain_Red.Visible = 'off';
+            app.TryAgain_Red.Position = [165 161 273 159];
+            app.TryAgain_Red.ImageSource = 'TryAgain.png';
+
+            % Create RedChallengeTab
+            app.RedChallengeTab = uitab(app.TabGroup);
+            app.RedChallengeTab.Title = 'Red Challenge';
+            app.RedChallengeTab.BackgroundColor = [0.9686 0.5098 0.5098];
+
+            % Create RCDef1
+            app.RCDef1 = uilabel(app.RedChallengeTab);
+            app.RCDef1.Position = [18 375 577 22];
+            app.RCDef1.Text = 'Label5';
+
+            % Create RCDef2
+            app.RCDef2 = uilabel(app.RedChallengeTab);
+            app.RCDef2.Position = [18 297 577 22];
+            app.RCDef2.Text = 'Label6';
+
+            % Create RCDef3
+            app.RCDef3 = uilabel(app.RedChallengeTab);
+            app.RCDef3.Position = [18 216 577 22];
+            app.RCDef3.Text = 'Label7';
+
+            % Create RCDef4
+            app.RCDef4 = uilabel(app.RedChallengeTab);
+            app.RCDef4.Position = [18 133 577 22];
+            app.RCDef4.Text = 'Label8';
+
+            % Create AnswerLabel
+            app.AnswerLabel = uilabel(app.RedChallengeTab);
+            app.AnswerLabel.HorizontalAlignment = 'right';
+            app.AnswerLabel.Position = [338 344 49 22];
+            app.AnswerLabel.Text = 'Answer:';
+
+            % Create RCAns1
+            app.RCAns1 = uieditfield(app.RedChallengeTab, 'text');
+            app.RCAns1.ValueChangedFcn = createCallbackFcn(app, @RCAns1ValueChanged, true);
+            app.RCAns1.Position = [402 344 193 22];
+
+            % Create AnswerLabel_2
+            app.AnswerLabel_2 = uilabel(app.RedChallengeTab);
+            app.AnswerLabel_2.HorizontalAlignment = 'right';
+            app.AnswerLabel_2.Position = [344 266 49 22];
+            app.AnswerLabel_2.Text = 'Answer:';
+
+            % Create RCAns2
+            app.RCAns2 = uieditfield(app.RedChallengeTab, 'text');
+            app.RCAns2.ValueChangedFcn = createCallbackFcn(app, @RCAns2ValueChanged, true);
+            app.RCAns2.Position = [408 266 187 22];
+
+            % Create AnswerLabel_3
+            app.AnswerLabel_3 = uilabel(app.RedChallengeTab);
+            app.AnswerLabel_3.HorizontalAlignment = 'right';
+            app.AnswerLabel_3.Position = [344 185 49 22];
+            app.AnswerLabel_3.Text = 'Answer:';
+
+            % Create RCAns3
+            app.RCAns3 = uieditfield(app.RedChallengeTab, 'text');
+            app.RCAns3.ValueChangedFcn = createCallbackFcn(app, @RCAns3ValueChanged, true);
+            app.RCAns3.Position = [408 185 187 22];
+
+            % Create AnswerLabel_4
+            app.AnswerLabel_4 = uilabel(app.RedChallengeTab);
+            app.AnswerLabel_4.HorizontalAlignment = 'right';
+            app.AnswerLabel_4.Position = [344 102 49 22];
+            app.AnswerLabel_4.Text = 'Answer:';
+
+            % Create RCAns4
+            app.RCAns4 = uieditfield(app.RedChallengeTab, 'text');
+            app.RCAns4.ValueChangedFcn = createCallbackFcn(app, @RCAns4ValueChanged, true);
+            app.RCAns4.Position = [408 102 187 22];
+
+            % Create CheckMarkRC
+            app.CheckMarkRC = uiimage(app.RedChallengeTab);
+            app.CheckMarkRC.Visible = 'off';
+            app.CheckMarkRC.Position = [150 78 314 301];
+            app.CheckMarkRC.ImageSource = 'CheckMark.png';
+
+            % Create UnCheckMark_C_Red
+            app.UnCheckMark_C_Red = uiimage(app.RedChallengeTab);
+            app.UnCheckMark_C_Red.Visible = 'off';
+            app.UnCheckMark_C_Red.Position = [220 134 217 186];
+            app.UnCheckMark_C_Red.ImageSource = 'UnCheckMark.png';
+
+            % Create TryAgain_C_Red
+            app.TryAgain_C_Red = uiimage(app.RedChallengeTab);
+            app.TryAgain_C_Red.Visible = 'off';
+            app.TryAgain_C_Red.Position = [183 161 273 159];
+            app.TryAgain_C_Red.ImageSource = 'TryAgain.png';
+
+            % Create GreenTab
+            app.GreenTab = uitab(app.TabGroup);
+            app.GreenTab.Title = 'Green';
+            app.GreenTab.BackgroundColor = [0.6 0.949 0.1412];
+
+            % Create Plot1
+            app.Plot1 = uiaxes(app.GreenTab);
+            app.Plot1.XLim = [0 50];
+            app.Plot1.YLim = [0 80];
+            app.Plot1.Box = 'on';
+            app.Plot1.XColor = [0 0 0];
+            app.Plot1.XTick = [0 10 20 30 40 50];
+            app.Plot1.XTickLabel = {'0'; '10'; '20'; '30'; '40'; '50'};
+            app.Plot1.YColor = [0 0 0];
+            app.Plot1.YTick = [0 20 40 60 80];
+            app.Plot1.YTickLabel = {'0'; '20'; '40'; '60'; '80'};
+            app.Plot1.Position = [331 260 297 182];
+
+            % Create NumberofLayersLabel
+            app.NumberofLayersLabel = uilabel(app.GreenTab);
+            app.NumberofLayersLabel.HorizontalAlignment = 'right';
+            app.NumberofLayersLabel.Position = [9 409 101 22];
+            app.NumberofLayersLabel.Text = 'Number of Layers';
+
+            % Create LayerCount
+            app.LayerCount = uidropdown(app.GreenTab);
+            app.LayerCount.Items = {'0', '1', '2', '3'};
+            app.LayerCount.ValueChangedFcn = createCallbackFcn(app, @LayerCountValueChanged, true);
+            app.LayerCount.Position = [125 409 100 22];
+            app.LayerCount.Value = '0';
+
+            % Create ClearPlotButton
+            app.ClearPlotButton = uibutton(app.GreenTab, 'push');
+            app.ClearPlotButton.ButtonPushedFcn = createCallbackFcn(app, @ClearPlotButtonPushed, true);
+            app.ClearPlotButton.Visible = 'off';
+            app.ClearPlotButton.Position = [214 9 100 22];
+            app.ClearPlotButton.Text = 'Clear Plot';
+
+            % Create Layer2Label
+            app.Layer2Label = uilabel(app.GreenTab);
+            app.Layer2Label.Position = [9 303 46 22];
+            app.Layer2Label.Text = 'Layer 2';
+
+            % Create Layer2HeightLabel
+            app.Layer2HeightLabel = uilabel(app.GreenTab);
+            app.Layer2HeightLabel.HorizontalAlignment = 'right';
+            app.Layer2HeightLabel.Position = [88 303 40 22];
+            app.Layer2HeightLabel.Text = 'Height';
+
+            % Create Layer2Height
+            app.Layer2Height = uislider(app.GreenTab);
+            app.Layer2Height.Limits = [0 80];
+            app.Layer2Height.ValueChangedFcn = createCallbackFcn(app, @Layer2HeightValueChanged, true);
+            app.Layer2Height.Position = [70 295 77 3];
+
+            % Create Layer2ViscLabel
+            app.Layer2ViscLabel = uilabel(app.GreenTab);
+            app.Layer2ViscLabel.HorizontalAlignment = 'right';
+            app.Layer2ViscLabel.FontSize = 10;
+            app.Layer2ViscLabel.Position = [190 303 45 22];
+            app.Layer2ViscLabel.Text = 'Viscosity';
+
+            % Create Layer2Visc
+            app.Layer2Visc = uislider(app.GreenTab);
+            app.Layer2Visc.Limits = [0.001 7.5];
+            app.Layer2Visc.MajorTicks = [0.1 1 2 3 4 5 6 7.5];
+            app.Layer2Visc.ValueChangedFcn = createCallbackFcn(app, @Layer2ViscValueChanged, true);
+            app.Layer2Visc.MinorTicks = [];
+            app.Layer2Visc.FontSize = 10;
+            app.Layer2Visc.Position = [175 295 111 3];
+            app.Layer2Visc.Value = 1;
+
+            % Create Layer3Label
+            app.Layer3Label = uilabel(app.GreenTab);
+            app.Layer3Label.Position = [9 227 46 22];
+            app.Layer3Label.Text = 'Layer 3';
+
+            % Create Layer3HeightLabel
+            app.Layer3HeightLabel = uilabel(app.GreenTab);
+            app.Layer3HeightLabel.HorizontalAlignment = 'right';
+            app.Layer3HeightLabel.Position = [87 227 40 22];
+            app.Layer3HeightLabel.Text = 'Height';
+
+            % Create Layer3Height
+            app.Layer3Height = uislider(app.GreenTab);
+            app.Layer3Height.Limits = [0 80];
+            app.Layer3Height.ValueChangedFcn = createCallbackFcn(app, @Layer3HeightValueChanged, true);
+            app.Layer3Height.Position = [68 219 77 3];
+
+            % Create Layer3ViscLabel
+            app.Layer3ViscLabel = uilabel(app.GreenTab);
+            app.Layer3ViscLabel.HorizontalAlignment = 'right';
+            app.Layer3ViscLabel.Position = [179 227 53 22];
+            app.Layer3ViscLabel.Text = 'Viscosity';
+
+            % Create Layer3Visc
+            app.Layer3Visc = uislider(app.GreenTab);
+            app.Layer3Visc.Limits = [0.1 7.5];
+            app.Layer3Visc.MajorTicks = [0.1 1 2 3 4 5 6 7.5];
+            app.Layer3Visc.MajorTickLabels = {'0.1', '1', '2', '3', '4', '5', '6', '7.5'};
+            app.Layer3Visc.ValueChangedFcn = createCallbackFcn(app, @Layer3ViscValueChanged, true);
+            app.Layer3Visc.MinorTicks = [];
+            app.Layer3Visc.FontSize = 10;
+            app.Layer3Visc.Position = [174 218 112 3];
+            app.Layer3Visc.Value = 1;
+
+            % Create Layer4Label
+            app.Layer4Label = uilabel(app.GreenTab);
+            app.Layer4Label.Position = [8 156 46 22];
+            app.Layer4Label.Text = 'Layer 4';
+
+            % Create Layer4HeightLabel
+            app.Layer4HeightLabel = uilabel(app.GreenTab);
+            app.Layer4HeightLabel.HorizontalAlignment = 'right';
+            app.Layer4HeightLabel.Position = [86 156 40 22];
+            app.Layer4HeightLabel.Text = 'Height';
+
+            % Create Layer4Height
+            app.Layer4Height = uislider(app.GreenTab);
+            app.Layer4Height.Limits = [0 80];
+            app.Layer4Height.ValueChangedFcn = createCallbackFcn(app, @Layer4HeightValueChanged, true);
+            app.Layer4Height.Position = [67 148 77 3];
+
+            % Create Layer4ViscLabel
+            app.Layer4ViscLabel = uilabel(app.GreenTab);
+            app.Layer4ViscLabel.HorizontalAlignment = 'right';
+            app.Layer4ViscLabel.Position = [188 156 53 22];
+            app.Layer4ViscLabel.Text = 'Viscosity';
+
+            % Create Layer4Visc
+            app.Layer4Visc = uislider(app.GreenTab);
+            app.Layer4Visc.Limits = [0.1 7.5];
+            app.Layer4Visc.MajorTicks = [0.1 1 2 3 4 5 6 7.5];
+            app.Layer4Visc.ValueChangedFcn = createCallbackFcn(app, @Layer4ViscValueChanged, true);
+            app.Layer4Visc.MinorTicks = [];
+            app.Layer4Visc.FontSize = 10;
+            app.Layer4Visc.Position = [173 147 113 3];
+            app.Layer4Visc.Value = 1;
+
+            % Create Layer1Label
+            app.Layer1Label = uilabel(app.GreenTab);
+            app.Layer1Label.Position = [8 369 46 22];
+            app.Layer1Label.Text = 'Layer 1';
+
+            % Create Layer1HeightLabel
+            app.Layer1HeightLabel = uilabel(app.GreenTab);
+            app.Layer1HeightLabel.HorizontalAlignment = 'right';
+            app.Layer1HeightLabel.Position = [86 369 40 22];
+            app.Layer1HeightLabel.Text = 'Height';
+
+            % Create Layer1Height
+            app.Layer1Height = uislider(app.GreenTab);
+            app.Layer1Height.Limits = [0 80];
+            app.Layer1Height.ValueChangedFcn = createCallbackFcn(app, @Layer1HeightValueChanged, true);
+            app.Layer1Height.Position = [67 361 77 3];
+
+            % Create Layer1ViscLabel
+            app.Layer1ViscLabel = uilabel(app.GreenTab);
+            app.Layer1ViscLabel.HorizontalAlignment = 'right';
+            app.Layer1ViscLabel.FontSize = 10;
+            app.Layer1ViscLabel.Position = [196 369 45 22];
+            app.Layer1ViscLabel.Text = 'Viscosity';
+
+            % Create Layer1Visc
+            app.Layer1Visc = uislider(app.GreenTab);
+            app.Layer1Visc.Limits = [0.1 7.5];
+            app.Layer1Visc.MajorTicks = [0.1 1 2 3 4 5 6 7.5];
+            app.Layer1Visc.MajorTickLabels = {'0.1', '1', '2', '3', '4', '5', '6', '7.5'};
+            app.Layer1Visc.ValueChangedFcn = createCallbackFcn(app, @Layer1ViscValueChanged, true);
+            app.Layer1Visc.MinorTicks = [];
+            app.Layer1Visc.FontSize = 10;
+            app.Layer1Visc.Position = [173 360 113 3];
+            app.Layer1Visc.Value = 1;
+
+            % Create BottomPlateVeloictyLabel
+            app.BottomPlateVeloictyLabel = uilabel(app.GreenTab);
+            app.BottomPlateVeloictyLabel.HorizontalAlignment = 'right';
+            app.BottomPlateVeloictyLabel.Position = [0 77 78 28];
+            app.BottomPlateVeloictyLabel.Text = {'Bottom Plate '; 'Velocity'};
+
+            % Create BtmV
+            app.BtmV = uieditfield(app.GreenTab, 'numeric');
+            app.BtmV.ValueChangedFcn = createCallbackFcn(app, @BtmVValueChanged, true);
+            app.BtmV.Position = [79 83 100 22];
+
+            % Create TopPlateVeloictyEditFieldLabel
+            app.TopPlateVeloictyEditFieldLabel = uilabel(app.GreenTab);
+            app.TopPlateVeloictyEditFieldLabel.HorizontalAlignment = 'right';
+            app.TopPlateVeloictyEditFieldLabel.Position = [19 42 59 28];
+            app.TopPlateVeloictyEditFieldLabel.Text = {'Top Plate '; 'Velocity'};
+
+            % Create TopV
+            app.TopV = uieditfield(app.GreenTab, 'numeric');
+            app.TopV.ValueChangedFcn = createCallbackFcn(app, @TopVValueChanged, true);
+            app.TopV.Position = [79 48 100 22];
+
+            % Create PressureEditFieldLabel
+            app.PressureEditFieldLabel = uilabel(app.GreenTab);
+            app.PressureEditFieldLabel.HorizontalAlignment = 'right';
+            app.PressureEditFieldLabel.Position = [22 9 54 22];
+            app.PressureEditFieldLabel.Text = 'Pressure';
+
+            % Create GreenPressure
+            app.GreenPressure = uieditfield(app.GreenTab, 'numeric');
+            app.GreenPressure.ValueChangedFcn = createCallbackFcn(app, @GreenPressureValueChanged, true);
+            app.GreenPressure.Position = [79 9 100 22];
+
+            % Create Plot2
+            app.Plot2 = uiaxes(app.GreenTab);
+            app.Plot2.XLim = [0 50];
+            app.Plot2.YLim = [0 80];
+            app.Plot2.Box = 'on';
+            app.Plot2.XColor = [0 0 0];
+            app.Plot2.XTick = [0 10 20 30 40 50];
+            app.Plot2.XTickLabel = {'0'; '10'; '20'; '30'; '40'; '50'};
+            app.Plot2.YColor = [0 0 0];
+            app.Plot2.YTick = [0 20 40 60 80];
+            app.Plot2.YTickLabel = {'0'; '20'; '40'; '60'; '80'};
+            app.Plot2.Position = [331 58 297 182];
+
+            % Create Label9
+            app.Label9 = uilabel(app.GreenTab);
+            app.Label9.Visible = 'off';
+            app.Label9.Position = [259 379 42 22];
+            app.Label9.Text = 'Label9';
+
+            % Create CheckMarkGreen
+            app.CheckMarkGreen = uiimage(app.GreenTab);
+            app.CheckMarkGreen.Visible = 'off';
+            app.CheckMarkGreen.Position = [185 106 269 255];
+            app.CheckMarkGreen.ImageSource = 'CheckMark.png';
+
+            % Create BlueTab
+            app.BlueTab = uitab(app.TabGroup);
+            app.BlueTab.Title = 'Blue';
+            app.BlueTab.BackgroundColor = [0.6784 0.8902 0.9882];
+
+            % Create PleaseinputtheLabel
+            app.PleaseinputtheLabel = uilabel(app.BlueTab);
+            app.PleaseinputtheLabel.Position = [347 198 92 22];
+            app.PleaseinputtheLabel.Text = 'Please input the';
+
+            % Create Blue_VarValue_5Label
+            app.Blue_VarValue_5Label = uilabel(app.BlueTab);
+            app.Blue_VarValue_5Label.Position = [438 198 97 22];
+            app.Blue_VarValue_5Label.Text = 'Blue_VarValue_5';
+
+            % Create Blue_VarValue_1Label
+            app.Blue_VarValue_1Label = uilabel(app.BlueTab);
+            app.Blue_VarValue_1Label.Position = [17 198 97 22];
+            app.Blue_VarValue_1Label.Text = 'Blue_VarValue_1';
+
+            % Create Blue_VarValue_2Label
+            app.Blue_VarValue_2Label = uilabel(app.BlueTab);
+            app.Blue_VarValue_2Label.Position = [16 159 97 22];
+            app.Blue_VarValue_2Label.Text = 'Blue_VarValue_2';
+
+            % Create Blue_VarValue_3Label
+            app.Blue_VarValue_3Label = uilabel(app.BlueTab);
+            app.Blue_VarValue_3Label.Position = [16 125 97 22];
+            app.Blue_VarValue_3Label.Text = 'Blue_VarValue_3';
+
+            % Create Blue_VarValue_4Label
+            app.Blue_VarValue_4Label = uilabel(app.BlueTab);
+            app.Blue_VarValue_4Label.Position = [16 90 97 22];
+            app.Blue_VarValue_4Label.Text = 'Blue_VarValue_4';
+
+            % Create Blue_NumValue_1Label
+            app.Blue_NumValue_1Label = uilabel(app.BlueTab);
+            app.Blue_NumValue_1Label.Position = [159 198 104 22];
+            app.Blue_NumValue_1Label.Text = 'Blue_NumValue_1';
+
+            % Create Blue_NumValue_2Label
+            app.Blue_NumValue_2Label = uilabel(app.BlueTab);
+            app.Blue_NumValue_2Label.Position = [159 159 104 22];
+            app.Blue_NumValue_2Label.Text = 'Blue_NumValue_2';
+
+            % Create Blue_NumValue_3Label
+            app.Blue_NumValue_3Label = uilabel(app.BlueTab);
+            app.Blue_NumValue_3Label.Position = [159 125 104 22];
+            app.Blue_NumValue_3Label.Text = 'Blue_NumValue_3';
+
+            % Create Blue_NumValue_4Label
+            app.Blue_NumValue_4Label = uilabel(app.BlueTab);
+            app.Blue_NumValue_4Label.Position = [159 90 104 22];
+            app.Blue_NumValue_4Label.Text = 'Blue_NumValue_4';
+
+            % Create test_answerLabel
+            app.test_answerLabel = uilabel(app.BlueTab);
+            app.test_answerLabel.Position = [358 111 70 22];
+            app.test_answerLabel.Text = 'test_answer';
+
+            % Create AnswerEditField_2Label
+            app.AnswerEditField_2Label = uilabel(app.BlueTab);
+            app.AnswerEditField_2Label.HorizontalAlignment = 'right';
+            app.AnswerEditField_2Label.Position = [347 159 46 22];
+            app.AnswerEditField_2Label.Text = 'Answer';
+
+            % Create Blue_User_Input
+            app.Blue_User_Input = uieditfield(app.BlueTab, 'numeric');
+            app.Blue_User_Input.ValueChangedFcn = createCallbackFcn(app, @Blue_User_InputValueChanged, true);
+            app.Blue_User_Input.Position = [408 159 100 22];
+
+            % Create CheckMark_Blue
+            app.CheckMark_Blue = uiimage(app.BlueTab);
+            app.CheckMark_Blue.Visible = 'off';
+            app.CheckMark_Blue.Position = [392 240 204 199];
+            app.CheckMark_Blue.ImageSource = 'CheckMark.png';
+
+            % Create ReyNum_Blue
+            app.ReyNum_Blue = uiimage(app.BlueTab);
+            app.ReyNum_Blue.Visible = 'off';
+            app.ReyNum_Blue.Position = [29 252 234 174];
+            app.ReyNum_Blue.ImageSource = 'ReyNum.png';
+
+            % Create SurfTen_Blue
+            app.SurfTen_Blue = uiimage(app.BlueTab);
+            app.SurfTen_Blue.Visible = 'off';
+            app.SurfTen_Blue.Position = [63 225 166 228];
+            app.SurfTen_Blue.ImageSource = 'SurfTen.png';
+
+            % Create UnCheckMark_Blue
+            app.UnCheckMark_Blue = uiimage(app.BlueTab);
+            app.UnCheckMark_Blue.Visible = 'off';
+            app.UnCheckMark_Blue.Position = [358 253 217 186];
+            app.UnCheckMark_Blue.ImageSource = 'UnCheckMark.png';
+
+            % Create TryAgain_Blue
+            app.TryAgain_Blue = uiimage(app.BlueTab);
+            app.TryAgain_Blue.Visible = 'off';
+            app.TryAgain_Blue.Position = [321 280 273 159];
+            app.TryAgain_Blue.ImageSource = 'TryAgain.png';
+
+            % Create BlueChallengeTab
+            app.BlueChallengeTab = uitab(app.TabGroup);
+            app.BlueChallengeTab.Title = 'Blue Challenge';
+            app.BlueChallengeTab.BackgroundColor = [0.6784 0.8902 0.9882];
+
+            % Create Blue_C_directions
+            app.Blue_C_directions = uilabel(app.BlueChallengeTab);
+            app.Blue_C_directions.Position = [386 190 167 22];
+            app.Blue_C_directions.Text = 'Please input the friction factor:';
+
+            % Create Blue_C_VarValue_1Label
+            app.Blue_C_VarValue_1Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_VarValue_1Label.Position = [56 190 112 22];
+            app.Blue_C_VarValue_1Label.Text = 'Blue_C_VarValue_1';
+
+            % Create Blue_C_VarValue_2Label
+            app.Blue_C_VarValue_2Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_VarValue_2Label.Position = [55 151 112 22];
+            app.Blue_C_VarValue_2Label.Text = 'Blue_C_VarValue_2';
+
+            % Create Blue_C_VarValue_3Label
+            app.Blue_C_VarValue_3Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_VarValue_3Label.Position = [55 117 112 22];
+            app.Blue_C_VarValue_3Label.Text = 'Blue_C_VarValue_3';
+
+            % Create Blue_C_VarValue_4Label
+            app.Blue_C_VarValue_4Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_VarValue_4Label.Position = [55 82 112 22];
+            app.Blue_C_VarValue_4Label.Text = 'Blue_C_VarValue_4';
+
+            % Create Blue_C_NumValue_1Label
+            app.Blue_C_NumValue_1Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_NumValue_1Label.Position = [198 190 120 22];
+            app.Blue_C_NumValue_1Label.Text = 'Blue_C_NumValue_1';
+
+            % Create Blue_C_NumValue_2Label
+            app.Blue_C_NumValue_2Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_NumValue_2Label.Position = [198 151 120 22];
+            app.Blue_C_NumValue_2Label.Text = 'Blue_C_NumValue_2';
+
+            % Create Blue_C_NumValue_3Label
+            app.Blue_C_NumValue_3Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_NumValue_3Label.Position = [198 117 120 22];
+            app.Blue_C_NumValue_3Label.Text = 'Blue_C_NumValue_3';
+
+            % Create Blue_C_NumValue_4Label
+            app.Blue_C_NumValue_4Label = uilabel(app.BlueChallengeTab);
+            app.Blue_C_NumValue_4Label.Position = [198 82 120 22];
+            app.Blue_C_NumValue_4Label.Text = 'Blue_C_NumValue_4';
+
+            % Create test_C_reynoldLabel
+            app.test_C_reynoldLabel = uilabel(app.BlueChallengeTab);
+            app.test_C_reynoldLabel.Position = [397 103 86 22];
+            app.test_C_reynoldLabel.Text = 'test_C_reynold';
+
+            % Create test_C_frictionLabel
+            app.test_C_frictionLabel = uilabel(app.BlueChallengeTab);
+            app.test_C_frictionLabel.Position = [397 69 82 22];
+            app.test_C_frictionLabel.Text = 'test_C_friction';
+
+            % Create AnswerEditField_2Label_2
+            app.AnswerEditField_2Label_2 = uilabel(app.BlueChallengeTab);
+            app.AnswerEditField_2Label_2.HorizontalAlignment = 'right';
+            app.AnswerEditField_2Label_2.Position = [386 151 46 22];
+            app.AnswerEditField_2Label_2.Text = 'Answer';
+
+            % Create Blue_C_User_Input
+            app.Blue_C_User_Input = uieditfield(app.BlueChallengeTab, 'numeric');
+            app.Blue_C_User_Input.ValueChangedFcn = createCallbackFcn(app, @Blue_C_User_InputValueChanged, true);
+            app.Blue_C_User_Input.Position = [447 151 100 22];
+
+            % Create CheckMark_C_Blue
+            app.CheckMark_C_Blue = uiimage(app.BlueChallengeTab);
+            app.CheckMark_C_Blue.Visible = 'off';
+            app.CheckMark_C_Blue.Position = [367 229 200 201];
+            app.CheckMark_C_Blue.ImageSource = 'CheckMark.png';
+
+            % Create UnCheckMark_C_Blue
+            app.UnCheckMark_C_Blue = uiimage(app.BlueChallengeTab);
+            app.UnCheckMark_C_Blue.Visible = 'off';
+            app.UnCheckMark_C_Blue.Position = [370 231 217 186];
+            app.UnCheckMark_C_Blue.ImageSource = 'UnCheckMark.png';
+
+            % Create TryAgain_C_Blue
+            app.TryAgain_C_Blue = uiimage(app.BlueChallengeTab);
+            app.TryAgain_C_Blue.Visible = 'off';
+            app.TryAgain_C_Blue.Position = [333 258 273 159];
+            app.TryAgain_C_Blue.ImageSource = 'TryAgain.png';
+
+            % Create YellowTab
+            app.YellowTab = uitab(app.TabGroup);
+            app.YellowTab.Title = 'Yellow';
+            app.YellowTab.BackgroundColor = [1 1 0.451];
+
+            % Create BoundednessCheckBox
+            app.BoundednessCheckBox = uicheckbox(app.YellowTab);
+            app.BoundednessCheckBox.ValueChangedFcn = createCallbackFcn(app, @BoundednessCheckBoxValueChanged, true);
+            app.BoundednessCheckBox.Text = 'Boundedness';
+            app.BoundednessCheckBox.Position = [391 370 95 22];
+
+            % Create DFlowCheckBox
+            app.DFlowCheckBox = uicheckbox(app.YellowTab);
+            app.DFlowCheckBox.ValueChangedFcn = createCallbackFcn(app, @DFlowCheckBoxValueChanged, true);
+            app.DFlowCheckBox.Text = '1-D Flow';
+            app.DFlowCheckBox.Position = [391 340 70 22];
+
+            % Create RectilinearCheckBox
+            app.RectilinearCheckBox = uicheckbox(app.YellowTab);
+            app.RectilinearCheckBox.ValueChangedFcn = createCallbackFcn(app, @RectilinearCheckBoxValueChanged, true);
+            app.RectilinearCheckBox.Text = 'Rectilinear';
+            app.RectilinearCheckBox.Position = [391 308 79 22];
+
+            % Create NoEndEffectsCheckBox
+            app.NoEndEffectsCheckBox = uicheckbox(app.YellowTab);
+            app.NoEndEffectsCheckBox.ValueChangedFcn = createCallbackFcn(app, @NoEndEffectsCheckBoxValueChanged, true);
+            app.NoEndEffectsCheckBox.Text = 'No End Effects';
+            app.NoEndEffectsCheckBox.Position = [391 278 102 22];
+
+            % Create AxisofSymmetryCheckBox
+            app.AxisofSymmetryCheckBox = uicheckbox(app.YellowTab);
+            app.AxisofSymmetryCheckBox.ValueChangedFcn = createCallbackFcn(app, @AxisofSymmetryCheckBoxValueChanged, true);
+            app.AxisofSymmetryCheckBox.Text = 'Axis of Symmetry';
+            app.AxisofSymmetryCheckBox.Position = [391 253 115 22];
+
+            % Create NoGravityEffectsCheckBox
+            app.NoGravityEffectsCheckBox = uicheckbox(app.YellowTab);
+            app.NoGravityEffectsCheckBox.ValueChangedFcn = createCallbackFcn(app, @NoGravityEffectsCheckBoxValueChanged, true);
+            app.NoGravityEffectsCheckBox.Text = 'No Gravity Effects';
+            app.NoGravityEffectsCheckBox.Position = [391 223 118 22];
+
+            % Create NoPressureGradientCheckBox
+            app.NoPressureGradientCheckBox = uicheckbox(app.YellowTab);
+            app.NoPressureGradientCheckBox.ValueChangedFcn = createCallbackFcn(app, @NoPressureGradientCheckBoxValueChanged, true);
+            app.NoPressureGradientCheckBox.Text = 'No Pressure Gradient';
+            app.NoPressureGradientCheckBox.Position = [391 191 138 22];
+
+            % Create NewtonianCheckBox
+            app.NewtonianCheckBox = uicheckbox(app.YellowTab);
+            app.NewtonianCheckBox.ValueChangedFcn = createCallbackFcn(app, @NewtonianCheckBoxValueChanged, true);
+            app.NewtonianCheckBox.Text = 'Newtonian';
+            app.NewtonianCheckBox.Position = [391 161 79 22];
+
+            % Create IncompressibleCheckBox
+            app.IncompressibleCheckBox = uicheckbox(app.YellowTab);
+            app.IncompressibleCheckBox.ValueChangedFcn = createCallbackFcn(app, @IncompressibleCheckBoxValueChanged, true);
+            app.IncompressibleCheckBox.Text = 'Incompressible';
+            app.IncompressibleCheckBox.Position = [391 136 103 22];
+
+            % Create StressatABoundaryCheckBox
+            app.StressatABoundaryCheckBox = uicheckbox(app.YellowTab);
+            app.StressatABoundaryCheckBox.ValueChangedFcn = createCallbackFcn(app, @StressatABoundaryCheckBoxValueChanged, true);
+            app.StressatABoundaryCheckBox.Text = '0 Stress at A Boundary';
+            app.StressatABoundaryCheckBox.Position = [391 107 145 22];
+
+            % Create NoSlipMoreThan2BoundariesCheckBox
+            app.NoSlipMoreThan2BoundariesCheckBox = uicheckbox(app.YellowTab);
+            app.NoSlipMoreThan2BoundariesCheckBox.ValueChangedFcn = createCallbackFcn(app, @NoSlipMoreThan2BoundariesCheckBoxValueChanged, true);
+            app.NoSlipMoreThan2BoundariesCheckBox.Text = 'No Slip at 2 or More Boundaries';
+            app.NoSlipMoreThan2BoundariesCheckBox.Position = [391 77 194 22];
+
+            % Create NoSlipatExactlyOneBoundaryCheckBox
+            app.NoSlipatExactlyOneBoundaryCheckBox = uicheckbox(app.YellowTab);
+            app.NoSlipatExactlyOneBoundaryCheckBox.ValueChangedFcn = createCallbackFcn(app, @NoSlipatExactlyOneBoundaryCheckBoxValueChanged, true);
+            app.NoSlipatExactlyOneBoundaryCheckBox.Text = 'No Slip at Exactly One Boundary';
+            app.NoSlipatExactlyOneBoundaryCheckBox.Position = [391 52 198 22];
+
+            % Create YellowWindow
+            app.YellowWindow = uiimage(app.YellowTab);
+            app.YellowWindow.Position = [46 52 270 349];
+
+            % Create CheckAnswerButton
+            app.CheckAnswerButton = uibutton(app.YellowTab, 'push');
+            app.CheckAnswerButton.ButtonPushedFcn = createCallbackFcn(app, @CheckAnswerButtonPushed, true);
+            app.CheckAnswerButton.Position = [46 38 270 23];
+            app.CheckAnswerButton.Text = 'Check Answer';
+
+            % Create YellowChallengeTab
+            app.YellowChallengeTab = uitab(app.TabGroup);
+            app.YellowChallengeTab.Title = 'Yellow Challenge';
+            app.YellowChallengeTab.BackgroundColor = [1 1 0.451];
+
+            % Create Label1_2
+            app.Label1_2 = uilabel(app.YellowChallengeTab);
+            app.Label1_2.Position = [30 364 133 22];
+            app.Label1_2.Text = 'Label1';
+
+            % Create Label2_2
+            app.Label2_2 = uilabel(app.YellowChallengeTab);
+            app.Label2_2.Position = [30 272 133 22];
+            app.Label2_2.Text = 'Label2';
+
+            % Create Label3_2
+            app.Label3_2 = uilabel(app.YellowChallengeTab);
+            app.Label3_2.Position = [30 174 133 22];
+            app.Label3_2.Text = 'Label3';
+
+            % Create Label4_2
+            app.Label4_2 = uilabel(app.YellowChallengeTab);
+            app.Label4_2.Position = [30 80 133 22];
+            app.Label4_2.Text = 'Label4';
+
+            % Create ListBox_5
+            app.ListBox_5 = uilistbox(app.YellowChallengeTab);
+            app.ListBox_5.ValueChangedFcn = createCallbackFcn(app, @ListBox_5ValueChanged, true);
+            app.ListBox_5.Position = [198 338 433 74];
+            app.ListBox_5.Value = {};
+
+            % Create ListBox_6
+            app.ListBox_6 = uilistbox(app.YellowChallengeTab);
+            app.ListBox_6.ValueChangedFcn = createCallbackFcn(app, @ListBox_6ValueChanged, true);
+            app.ListBox_6.Position = [198 246 433 74];
+            app.ListBox_6.Value = {};
+
+            % Create ListBox_7
+            app.ListBox_7 = uilistbox(app.YellowChallengeTab);
+            app.ListBox_7.ValueChangedFcn = createCallbackFcn(app, @ListBox_7ValueChanged, true);
+            app.ListBox_7.Position = [198 148 433 74];
+            app.ListBox_7.Value = {};
+
+            % Create ListBox_8
+            app.ListBox_8 = uilistbox(app.YellowChallengeTab);
+            app.ListBox_8.ValueChangedFcn = createCallbackFcn(app, @ListBox_8ValueChanged, true);
+            app.ListBox_8.Position = [198 54 433 74];
+            app.ListBox_8.Value = {};
+
+            % Create CheckMark_2
+            app.CheckMark_2 = uiimage(app.YellowChallengeTab);
+            app.CheckMark_2.Visible = 'off';
+            app.CheckMark_2.Position = [228 134 186 185];
+            app.CheckMark_2.ImageSource = 'CheckMark.png';
+
+            % Create UnCheckMark_C_Yellow
+            app.UnCheckMark_C_Yellow = uiimage(app.YellowChallengeTab);
+            app.UnCheckMark_C_Yellow.Visible = 'off';
+            app.UnCheckMark_C_Yellow.Position = [221 134 217 186];
+            app.UnCheckMark_C_Yellow.ImageSource = 'UnCheckMark.png';
+
+            % Create TryAgain_C_Yellow
+            app.TryAgain_C_Yellow = uiimage(app.YellowChallengeTab);
+            app.TryAgain_C_Yellow.Visible = 'off';
+            app.TryAgain_C_Yellow.Position = [184 161 273 159];
+            app.TryAgain_C_Yellow.ImageSource = 'TryAgain.png';
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = Simulation
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
